@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{f97a898e-58d3-4225-a319-fa832bceada9}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{52f0d0b2-3111-40a6-ab04-0b0177cbdb03}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{6aaa24ef-ee12-4a8a-b203-6c490509852c}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AutoFP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoFPDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BtnST.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BurningPort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionInclude\Cmmsdk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataPos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPosition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgReject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgSetting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgSupply.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgTapeIn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgTray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IniFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LogFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionAct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="P800IspDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundButton2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundButtonStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialCtl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketComm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XPGroupBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgModelCheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgUnderCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpRequestA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpResponseA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PxxATE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExcelDataDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\BasicExcel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="comidaqctrl1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="comidaq.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IoSd404.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraPort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ComiIoSd404.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Comidas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumSerial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AutoFP.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AutoFP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoFPDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BtnST.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BurningPort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionInclude\Cmmsdk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionInclude\CmmsdkDef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataPos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgReject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgSetting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgSupply.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgTapeIn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgTray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IniFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LogFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionAct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P800IspDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Pxx_ATEInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Pxx_LastErrCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundButton2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundButtonStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sendef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SerialCtl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketComm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XPGroupBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgModelCheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgUnderCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpRequestA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpResponseA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PxxATE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExcelDataDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="comidaqctrl1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="comidaq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IoSd404.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraPort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ComiIoSd404.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Comidas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumSerial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\googol\gts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtMdl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\ARROWdown.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ARROWdown.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\ARROWdown.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\ARROWleft.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ARROWleft.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\ARROWleft.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\ARROWright.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ARROWright.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\ARROWright.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\ARROWup.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ARROWup.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\ARROWup.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\AutoFP.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\b1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\b1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BITMAP10.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\EXIT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\gray.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\gray.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\Handler.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\Handler.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\HandlerDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\HandlerDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\Home.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\Home2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\no1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\no1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\pause.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\r1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\r1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\Run.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\save.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\save.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\SCREEN.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\SETUP.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\Stop1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\SpHnAuto\res\stop2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\2014_09_04\HnAutoSix_nozzle_Fix_origin\res\yellow.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Lib\HVDAILT.lib" />
+    <Library Include="Lib\HVUtil.lib" />
+    <Library Include="Lib\Raw2Rgb.lib" />
+    <Library Include="Lib\GxIAPI.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\1.bin">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\AutoFP.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Global.pp" />
+  </ItemGroup>
+</Project>
