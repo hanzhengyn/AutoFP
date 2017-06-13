@@ -551,6 +551,7 @@ afx_msg LRESULT CAutoFPDlg::OnRecvdata(WPARAM wParam, LPARAM lParam)
 }
 void CAutoFPDlg::AppendLogMessage(CString strMsg)
 {
+	gm_logFile.Write(strMsg);
 	time_t tt = time(NULL);//这句返回的只是一个时间cuo
 	tm* t = localtime(&tt);
 	//printf("%d-%02d-%02d %02d:%02d:%02d\n",
@@ -2411,7 +2412,21 @@ void CAutoFPDlg::OnBnClickedBtnRun()
 	gm_logFile.Write("----运行----");
 	gm_logFile.Write("运行参数：");
 	CString strLog;
-	strLog.Format("进出料方式：%d	XY轴速度：%d	Z轴速度：%d	下相机：%d	编带进出料检测：%d	芯片尺寸：%d×%d	单位换算：下相机 1mm=%dpixels 上相机 1mm=%dpixels		补料：%d		自动Tray盘机：%d", gm_uInfo.nWorkMode, gm_uInfo.xySpeed, gm_uInfo.zSpeed, gm_bDownCameraIn, gm_bTapeCheck, gm_uInfo.nChipLength, gm_uInfo.nChipWidth, gm_uInfo.nPixelsPM_down, gm_uInfo.nPixelsPM_up, gm_bStock, gm_bAutoTray);
+	strLog.Format("进出料方式：%d XY轴速度：%d Z轴速度：%d	\n \
+		下相机：%d 编带进出料检测：%d 芯片尺寸：%0.2f×%0.2f \n \
+		单位换算：下相机 1mm=%0.2fpixels 上相机 1mm=%0.2fpixels	\n \
+		补料：%d	 自动Tray盘机：%d", 
+		gm_uInfo.nWorkMode, 
+		gm_uInfo.xySpeed, 
+		gm_uInfo.zSpeed, 
+		gm_bDownCameraIn, 
+		gm_bTapeCheck, 
+		gm_uInfo.nChipLength, 
+		gm_uInfo.nChipWidth, 
+		gm_uInfo.nPixelsPM_down, 
+		gm_uInfo.nPixelsPM_up,
+		gm_bStock, 
+		gm_bAutoTray);
 	gm_logFile.Write(strLog);
 	GetDlgItem(IDC_BTN_RUN)->EnableWindow(FALSE);
 	GetDlgItem(IDC_BTN_SUSPEND)->EnableWindow(TRUE);

@@ -1065,6 +1065,9 @@ UINT ConvertChipProc(LPVOID lParam)
 				if (ERROR_CAMERA_CHECK == nResult || (abs(posOffset[i].x)>20 || abs(posOffset[i].y)>20))
 				{
 					//如果匹配失败，则放入废料盒
+					//CString str;
+					//str.Format("进料下相机匹配失败，当前匹配失败数量：%d", gm_nTotalCheckFail + 1);
+					//gm_logFile.Write(str);
 					gm_nTotalCheckFail++;
 					gm_nContinueCheckFail++;
 					bMatchSuccess[i] = FALSE;
@@ -1458,6 +1461,9 @@ UINT InputProc(LPVOID lParam)
 				if (ERROR_CAMERA_CHECK == nResult || (abs(posOffset[i].x)>gm_uInfo.nPixelsPM_down*MAX_OFFSET || abs(posOffset[i].y)>gm_uInfo.nPixelsPM_down*MAX_OFFSET))
 				{
 					//如果匹配失败，则放入废料盒
+					CString str;
+					str.Format("进料下相机匹配失败，当前匹配失败数量：%d", gm_nTotalCheckFail + 1);
+					gm_logFile.Write(str);
 					gm_nTotalCheckFail++;
 					gm_nContinueCheckFail++;
 					bMatchSuccess[i] = FALSE;
@@ -1680,6 +1686,10 @@ UINT OutputProc(LPVOID lParam)
 					}
 					else
 					{
+						CString strLog;
+						strLog.Format("%d号模组%d号烧录座，烧录NG。当前烧录NG总数：%d。", nModel, nSocket, gm_nTotalFPFail + 1);
+						gm_logFile.Write(strLog);
+
 						gm_sBurningStatus[nModel].nContinueFailSize[nSocket]++;
 						if (gm_sBurningStatus[nModel].nContinueFailSize[nSocket] >= 3)
 						{
@@ -1688,6 +1698,7 @@ UINT OutputProc(LPVOID lParam)
 							//StartProgramProc(nModel, lParam);
 							CString str;
 							str.Format("烧录座%d-%d连续抛料3次，已禁用", nModel+1, nSocket+1);
+							
 							pMainWnd->AppendLogMessage(str);
 						}
 						gm_nTotalFPFail++;
@@ -1707,6 +1718,7 @@ UINT OutputProc(LPVOID lParam)
 
 					CString str;
 					str.Format("烧录座#%d-%d芯片未取出。", nModel + 1, nSocket + 1);
+					
 					pMainWnd->AppendLogMessage(str);
 					gm_bErrorFig[i] = nResult;
 					BOOL bHasGetChip = bNozzleHasChip[0] || bNozzleHasChip[1] || bNozzleHasChip[2] || bNozzleHasChip[3];
@@ -1763,6 +1775,9 @@ lableGet:
 				if (ERROR_CAMERA_CHECK == nResult || (abs(posOffset[i].x)>gm_uInfo.nPixelsPM_down * MAX_OFFSET || abs(posOffset[i].y)>gm_uInfo.nPixelsPM_down * MAX_OFFSET))
 				{
 					//如果匹配失败，则放入废料盒
+					CString str;
+					str.Format("出料下相机匹配失败，当前匹配失败数量：%d", gm_nTotalCheckFail + 1);
+					gm_logFile.Write(str);
 					gm_nTotalCheckFail++;
 					bMatchSuccess[i] = FALSE;
 					gm_nContinueCheckFail++;

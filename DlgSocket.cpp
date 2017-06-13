@@ -232,6 +232,8 @@ void CDlgSocket::OnSockposSave()
 //测高
 void CDlgSocket::OnSockposStart()
 {
+	if (IDNO == MessageBox("确认烧录座中是否有芯片", "测高", MB_YESNO))
+		return;
 	GetDlgItem(IDC_SOCKPOS_START)->EnableWindow(FALSE);
 
 	if (gm_bSocketHeightCamera)
