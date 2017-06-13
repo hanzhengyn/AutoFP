@@ -1,7 +1,4 @@
-﻿  DlgSocket.cpp
-g:\sinaen\autofp\roundbuttonstyle.h(28): warning C4091: “static ”: 没有声明变量时忽略“ButtonState”的左侧
-g:\sinaen\autofp\dlgsocket.cpp(301): warning C4018: “>”: 有符号/无符号不匹配
-  BurningPort.cpp
+﻿  BurningPort.cpp
 g:\sinaen\autofp\label.h(18): warning C4091: “static ”: 没有声明变量时忽略“CLabel::FlashType”的左侧
 g:\sinaen\autofp\label.h(19): warning C4091: “static ”: 没有声明变量时忽略“CLabel::BackFillMode”的左侧
 g:\sinaen\autofp\foobutton.h(61): warning C4091: “static ”: 没有声明变量时忽略“FooButton::Type”的左侧
@@ -68,12 +65,12 @@ g:\sinaen\autofp\burningport.cpp(874): warning C4553: “==”: 运算符不起�
 g:\sinaen\autofp\burningport.cpp(875): warning C4553: “==”: 运算符不起任何作用；是否是有意使用“=”的?
 g:\sinaen\autofp\burningport.cpp(876): warning C4553: “==”: 运算符不起任何作用；是否是有意使用“=”的?
 g:\sinaen\autofp\burningport.cpp(877): warning C4553: “==”: 运算符不起任何作用；是否是有意使用“=”的?
-g:\sinaen\autofp\burningport.cpp(1419): warning C4101: “hThread”: 未引用的局部变量
-g:\sinaen\autofp\burningport.cpp(1564): warning C4101: “hThread”: 未引用的局部变量
-g:\sinaen\autofp\burningport.cpp(1671): warning C4018: “<”: 有符号/无符号不匹配
-g:\sinaen\autofp\burningport.cpp(1801): warning C4101: “hThread”: 未引用的局部变量
-g:\sinaen\autofp\burningport.cpp(2086): warning C4101: “hThread”: 未引用的局部变量
-g:\sinaen\autofp\burningport.cpp(2539): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+g:\sinaen\autofp\burningport.cpp(1421): warning C4101: “hThread”: 未引用的局部变量
+g:\sinaen\autofp\burningport.cpp(1566): warning C4101: “hThread”: 未引用的局部变量
+g:\sinaen\autofp\burningport.cpp(1673): warning C4018: “<”: 有符号/无符号不匹配
+g:\sinaen\autofp\burningport.cpp(1803): warning C4101: “hThread”: 未引用的局部变量
+g:\sinaen\autofp\burningport.cpp(2088): warning C4101: “hThread”: 未引用的局部变量
+g:\sinaen\autofp\burningport.cpp(2541): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
   AutoFPDlg.cpp
 g:\sinaen\autofp\label.h(18): warning C4091: “static ”: 没有声明变量时忽略“CLabel::FlashType”的左侧
 g:\sinaen\autofp\label.h(19): warning C4091: “static ”: 没有声明变量时忽略“CLabel::BackFillMode”的左侧
@@ -146,44 +143,21 @@ g:\sinaen\autofp\autofpdlg.cpp(596): warning C4996: 'inet_ntoa': Use inet_ntop()
 g:\sinaen\autofp\autofpdlg.cpp(914): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\time.h(505): note: 参见“localtime”的声明
 g:\sinaen\autofp\autofpdlg.cpp(2306): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(2807): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+g:\sinaen\autofp\autofpdlg.cpp(2810): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\string.h(129): note: 参见“strcpy”的声明
-g:\sinaen\autofp\autofpdlg.cpp(3813): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+g:\sinaen\autofp\autofpdlg.cpp(3816): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
-g:\sinaen\autofp\autofpdlg.cpp(4104): warning C4101: “lenMessage”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(4102): warning C4101: “mess”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(5111): warning C4244: “初始化”: 从“INT64”转换到“int”，可能丢失数据
-g:\sinaen\autofp\autofpdlg.cpp(5098): warning C4101: “Yoffset”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(5097): warning C4101: “Xoffset”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(5321): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(5356): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(5534): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(5564): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
-g:\sinaen\autofp\autofpdlg.cpp(5785): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
-g:\sinaen\autofp\autofpdlg.cpp(7662): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
-g:\sinaen\autofp\autofpdlg.cpp(7665): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+g:\sinaen\autofp\autofpdlg.cpp(5115): warning C4244: “初始化”: 从“INT64”转换到“int”，可能丢失数据
+g:\sinaen\autofp\autofpdlg.cpp(5102): warning C4101: “Yoffset”: 未引用的局部变量
+g:\sinaen\autofp\autofpdlg.cpp(5101): warning C4101: “Xoffset”: 未引用的局部变量
+g:\sinaen\autofp\autofpdlg.cpp(5325): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
+g:\sinaen\autofp\autofpdlg.cpp(5360): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
+g:\sinaen\autofp\autofpdlg.cpp(5538): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
+g:\sinaen\autofp\autofpdlg.cpp(5568): warning C4101: “HDevExpDefaultException”: 未引用的局部变量
+g:\sinaen\autofp\autofpdlg.cpp(5789): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+g:\sinaen\autofp\autofpdlg.cpp(7666): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+g:\sinaen\autofp\autofpdlg.cpp(7669): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\time.h(505): note: 参见“localtime”的声明
   正在生成代码...
-  正在跳过...(未检测到相关更改)
-  P800IspDlg.cpp
-  ExcelDataDlg.cpp
-  DlgUnderCamera.cpp
-  DlgTray.cpp
-  DlgTapeIn.cpp
-  DlgSupply.cpp
-  DlgSetting.cpp
-  DlgReject.cpp
-  DlgPosition.cpp
-  DlgModelCheck.cpp
-  ComiIoSd404.cpp
-  AutoFP.cpp
-AutoFP.rc(726): warning RC2182: duplicate dialog control ID 65535
-  
-AutoFP.rc(732): warning RC2182: duplicate dialog control ID 65535
-  
-AutoFP.rc(737): warning RC2182: duplicate dialog control ID 65535
-  
-AutoFP.rc(742): warning RC2182: duplicate dialog control ID 65535
-  
   AutoFP.vcxproj -> G:\sinaen\AutoFP\.\Debug\AutoFP.exe
   AutoFP.vcxproj -> .\Debug\AutoFP.pdb (Full PDB)

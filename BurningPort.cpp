@@ -1362,6 +1362,8 @@ UINT InputProc(LPVOID lParam)
 			{
 				pMainWnd->ChangeTapeIn(gm_nCurrentInSize);
 				pMainWnd->TapeInOk();
+				if (nEmptyNum > 1)
+					Sleep(500);
 				bNozzleHasChip[i] = TRUE;//i╨енЭвЛиоспп╬ф╛
 				gm_nCurrentInSize++;
 				gm_nTotalInSize++;

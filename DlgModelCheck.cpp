@@ -78,7 +78,8 @@ BOOL CDlgModelCheck::OnInitDialog()
 	// TODO:  在此添加额外的初始化
 	m_strCameraNum = gm_uInfo.strCameraNum;
 	m_strCameraVersion = gm_uInfo.strCameraVersion;
-	m_strSocketModel = gm_strSocketModel;
+	//m_strSocketModel = gm_strSocketModel;
+	SetDlgItemText(IDC_MFCEDITBROWSE1, gm_strSocketModel);
 	UpdateData(FALSE);
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常:  OCX 属性页应返回 FALSE
@@ -203,7 +204,9 @@ void CDlgModelCheck::CreateModel()
 		gm_hv_Angle_Socket = m_hv_Angle;
 		UpdateData();
 		gm_strSocketModel = m_strSocketModel;
-		HTuple filename = /*"c:/S100/Model/Socket/" + */m_strSocketModel;
+		CString strFile;
+		GetDlgItemText(IDC_MFCEDITBROWSE1, strFile);
+		HTuple filename = strFile;///*"c:/S100/Model/Socket/" + */m_strSocketModel;
 		//WriteShapeModel(m_hv_ModelID, "c:/S100/Model/SocketModel.shm");
 		WriteShapeModel(m_hv_ModelID, filename);
 

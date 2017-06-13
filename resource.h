@@ -903,6 +903,8 @@
 #define IDC_COMBO_CHIPMODEL             1267
 #define IDC_COMBO_SOCKET_COM            1267
 #define IDC_CHECK_CAMERACHECK           1268
+#define IDC_MFCEDITBROWSE2              1270
+#define IDC_MFCEDITBROWSE1              1271
 #define IDC_TRAY_CCD1                   1298
 #define IDC_TRAY_SAVE1                  1299
 #define IDC_NGBIN_SAVE1                 1299
@@ -961,9 +963,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        174
+#define _APS_NEXT_RESOURCE_VALUE        176
 #define _APS_NEXT_COMMAND_VALUE         32785
-#define _APS_NEXT_CONTROL_VALUE         1270
+#define _APS_NEXT_CONTROL_VALUE         1272
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

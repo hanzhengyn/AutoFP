@@ -2531,6 +2531,9 @@ void CAutoFPDlg::OnBnClickedBtnSuspend()
 
 	gm_bStop = TRUE;
 
+	//CString str;
+	//GetDlgItemText(IDC_MFCEDITBROWSE1, str);
+	//MessageBox(str);
 	//try
 	//{
 	//	if (m_bCameraOpenUp)
@@ -4098,13 +4101,14 @@ BOOL CAutoFPDlg::TapeInOk()
 		////	Sleep(5);
 		////	SendCommand("%01#WCSR00220**\r");
 		SendCommand("%01#WCSR00501**\r");
+		//MessageBox("tape in");
 		int  nResult = 0;
 		char mess[256];
 		unsigned int lenBuff = 256;
 		unsigned long lenMessage;
 		CString outPut;
-		//m_port.read_scc(mess, lenBuff, lenMessage);
-		//Sleep(10);
+		m_port.read_scc(mess, lenBuff, lenMessage);
+		//Sleep(100);
 		//TapeInDisable();
 	}
 

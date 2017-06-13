@@ -207,7 +207,9 @@ void CDlgUnderCamera::InitModelCamera()
 		//dev_display_shape_matching_results(m_hv_ModelID, "green", m_hv_Row, m_hv_Column, m_hv_Angle,1, 1, 0);
 		UpdateData();
 		gm_strChipModel = m_strChipModel;
-		HTuple filename = /*"c:/S100/Model/Chip/"+*/m_strChipModel;
+		CString strFile;
+		GetDlgItemTextA(IDC_MFCEDITBROWSE2, strFile);
+		HTuple filename = strFile;///*"c:/S100/Model/Chip/"+*/m_strChipModel;
 		//WriteShapeModel(m_hv_ModelID, "c:/S100/Model/ChipModel.shm");
 		WriteShapeModel(m_hv_ModelID, filename);
 
@@ -527,7 +529,8 @@ BOOL CDlgUnderCamera::OnInitDialog()
 	// TODO:  在此添加额外的初始化
 	m_strCameraNum = gm_uInfo.strDownCameraNum;
 	m_strCameraVersion = gm_uInfo.strDownCameraVersion;
-	m_strChipModel = gm_strChipModel;
+	//m_strChipModel = gm_strChipModel;
+	SetDlgItemText(IDC_MFCEDITBROWSE2, gm_strChipModel);
 	UpdateData(FALSE);
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常:  OCX 属性页应返回 FALSE
