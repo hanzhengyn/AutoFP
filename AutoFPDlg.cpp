@@ -5650,8 +5650,8 @@ void CAutoFPDlg::SaveConfig()
 	inf.WriteString("Model", "chip", gm_strChipModel);
 	inf.WriteString("Model", "socket", gm_strSocketModel);
 
-	inf.WriteIntNumber("RotateMode", "In", gm_nRotateAngleIn);
-	inf.WriteIntNumber("RotateMode", "Out", gm_nRotateAngleOut);
+	//inf.WriteIntNumber("RotateMode", "In", gm_nRotateAngleIn);
+	//inf.WriteIntNumber("RotateMode", "Out", gm_nRotateAngleOut);
 
 	SavePosition();//±£´æ×ø±ê
 
@@ -5738,8 +5738,8 @@ void CAutoFPDlg::LoadConfig()
 	inf.GetString("Model", "chip", gm_strChipModel, "");
 	inf.GetString("Model", "socket", gm_strSocketModel, "");
 
-	gm_nRotateAngleIn = inf.GetInt("RotateMode", "In", 0);
-	gm_nRotateAngleOut = inf.GetInt("RotateMode", "Out", 0);
+	//gm_nRotateAngleIn = inf.GetInt("RotateMode", "In", 0);
+	//gm_nRotateAngleOut = inf.GetInt("RotateMode", "Out", 0);
 
 	RefreshMainData();
 	if (gm_sdInfo.nLotNum <= gm_nTotalGoodSize + gm_nTotalFailSize && gm_nTotalGoodSize !=0 || gm_nTotalFailSize != 0)
@@ -5863,6 +5863,10 @@ void CAutoFPDlg::LoadPosition()
 	gm_uInfo.nNozzleDelay = inf.GetInt("System", "nozzle_delay", 100);
 
 	gm_uInfo.nCoverTime = inf.GetInt("Tape", "coverTime", 2);
+
+	gm_nRotateAngleIn = inf.GetInt("RotateMode", "In", 0);
+	gm_nRotateAngleOut = inf.GetInt("RotateMode", "Out", 0);
+
 	if ((m_xn != gm_dataTray.xn) || (m_yn != gm_dataTray.yn))
 	{
 		Invalidate(FALSE);
@@ -5942,6 +5946,8 @@ void CAutoFPDlg::SavePosition()
 	inf.WriteFloatNumber("System", "check_score_down", gm_uInfo.fCheckScoreDown);
 	inf.WriteIntNumber("System", "nozzle_delay", gm_uInfo.nNozzleDelay);
 
+	inf.WriteIntNumber("RotateMode", "In", gm_nRotateAngleIn);
+	inf.WriteIntNumber("RotateMode", "Out", gm_nRotateAngleOut);
 	//inf.WriteString("Model", "chip", gm_strChipModel);
 	//inf.WriteString("Model", "socket", gm_strSocketModel);
 }
@@ -6078,6 +6084,10 @@ void CAutoFPDlg::OnMenuLoad()
 	gm_uInfo.fTapeInStep = inf.GetFloat("Tape", "stepIn", 4);
 	gm_uInfo.fTapeOutStep = inf.GetFloat("Tape", "stepOut", 4);
 	gm_uInfo.nCoverTime = inf.GetInt("Tape", "coverTime", 2);
+
+	gm_nRotateAngleIn = inf.GetInt("RotateMode", "In", 0);
+	gm_nRotateAngleOut = inf.GetInt("RotateMode", "Out", 0);
+
 	if ((m_xn != gm_dataTray.xn) || (m_yn != gm_dataTray.yn))
 	{
 		Invalidate(FALSE);
@@ -6178,6 +6188,8 @@ void CAutoFPDlg::OnMenuSave()
 
 		//inf.WriteString("Model", "chip", gm_strChipModel);
 		//inf.WriteString("Model", "socket", gm_strSocketModel);
+		inf.WriteIntNumber("RotateMode", "In", gm_nRotateAngleIn);
+		inf.WriteIntNumber("RotateMode", "Out", gm_nRotateAngleOut);
 
 	}
 	else

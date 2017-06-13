@@ -41,12 +41,36 @@ CAutoFPApp::CAutoFPApp()
 // The one and only CAutoFPApp object
 
 CAutoFPApp theApp;
-
+HANDLE hMutex;
 /////////////////////////////////////////////////////////////////////////////
 // CAutoFPApp initialization
 
 BOOL CAutoFPApp::InitInstance()
 {
+	//创建互斥对象，防止程序被再次打开
+	hMutex = CreateMutexA(NULL, FALSE, _T("AutoFP"));
+	if (GetLastError() == ERROR_ALREADY_EXISTS)
+	{
+		CloseHandle(hMutex);
+		MessageBox(NULL, _T("程序已经被打开"), _T("AutoFP"), MB_ICONERROR);
+		return FALSE;
+	}
+	//CWnd* pWndExist;
+	//CWnd* pWndPopup;
+	//pWndExist = CWnd::FindWindowA(_T("ArwenAppClass"), NULL);
+	//if (pWndExist)
+	//{
+	//	//如果程序已经打开， 则返回FALSE
+	//	pWndPopup = pWndExist->GetLastActivePopup();//获得打开的活动窗体
+	//	if (pWndPopup->IsIconic())
+	//	{
+	//		pWndPopup->ShowWindow(SW_RESTORE);//如果窗体最小化了，restore它
+	//	}
+	//	pWndPopup->ShowWindow(SW_SHOW);//显示已经打开的窗体
+	//	pWndPopup->SetForegroundWindow();//让窗体显示在最前面
+	//	return FALSE;
+	//}
+
 	//应用程序或DLL在使用Windows Sockets服务之前必须要进行一次成功的WSAStartup()调用.当它完成了Windows Sockets的使用后，应用程序或DLL必须
 	//调用WSACleanup（）将其从Windows Sockets的实现中注销，并且该实现释放为应用程序或DLL分配的任何资源.任何打开的并已建立连接的SOCK_STREAM
 	//类型套接口在调用WSACleanup（）时会重置; 而已经由closesocket（）关闭却仍有要发送的悬而未决数据的套接口则不会受影响－ 该数据仍要发送.
