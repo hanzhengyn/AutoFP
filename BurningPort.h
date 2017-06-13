@@ -71,20 +71,20 @@ UINT CheckChipProc(int nNozzleNumber, Position2 &posOffset, LPVOID lParam);
 //  旋转芯片线程
 //param  lpParameter			[in] 保存偏差信息posOffset
 DWORD WINAPI SrMoveProc(
-	LPVOID lpParameter   // thread data
+    LPVOID lpParameter   // thread data
 );
 DWORD WINAPI SrMoveProc1(
-	LPVOID lpParameter   // thread data
+    LPVOID lpParameter   // thread data
 );
 DWORD WINAPI SrMoveProc2(
-	LPVOID lpParameter   // thread data
+    LPVOID lpParameter   // thread data
 );
 DWORD WINAPI SrMoveProc3(
-	LPVOID lpParameter   // thread data
+    LPVOID lpParameter   // thread data
 );
 //保存配置信息
 DWORD WINAPI SaveConfigProc(
-	LPVOID lpParameter   // thread data
+    LPVOID lpParameter   // thread data
 );
 //放满的座子开始烧录
 void StartProgramProc(int nSocketNum, LPVOID lParam);
@@ -94,7 +94,7 @@ void StartProgramProc(int nSocketNum, LPVOID lParam);
 //1.从进料取料：进料是否有料，烧录座是否有地方放
 //2.从烧录座取料：烧录座是否有烧录好的料，出料处是否有地方放
 //3.从补料盘取料：有补料过程，tray盘已空，出料未满（只针对tray盘进料）
-BOOL CheckChipCanBeGet(int nWorkMode,int nNozzle);
+BOOL CheckChipCanBeGet(int nWorkMode, int nNozzle);
 
 //进料过程
 UINT InputProc(LPVOID lParam);
@@ -119,6 +119,5 @@ UINT BurningProc(LPVOID lParam);
 //错误信息提示
 void ShowErrorMessage(const char *chErrorMessage, LPVOID lParam);
 void ShowErrorMessage(const char *chErrorMessage);
-void ShowErrorMessage(UINT nErrorCode,int axis, LPVOID lParam);
+void ShowErrorMessage(UINT nErrorCode, int axis, LPVOID lParam);
 #endif // !defined(AFX_BURNINGPORT_H__C33D05FE_9F8F_4185_B3A2_D55908F4478D__INCLUDED_)
-	

@@ -12,7 +12,7 @@ TrayInfo gm_dataStock;
 TrayInfo gm_dataNG;
 BYTE *gm_pTray = NULL;
 CString gm_strSpecialInfo;
-int gm_nModelPutPreference[MAXNUM_OF_PROGRAMMER]{0,0,0,0,0, 0,0,0,0,0};
+int gm_nModelPutPreference[MAXNUM_OF_PROGRAMMER]{ 0,0,0,0,0, 0,0,0,0,0 };
 int gm_nModelGetPreference[MAXNUM_OF_PROGRAMMER]{ 0,0,0,0,0, 0,0,0,0,0 };
 int sockPutPreference[MAXNUMOFPROGRAMMER*MAXNUMOFSOCKET];
 int sockGetPreference[MAXNUMOFPROGRAMMER*MAXNUMOFSOCKET];
@@ -23,10 +23,10 @@ BOOL gm_bNozzleUsed[4];				//吸嘴使用标志位
 BOOL gm_bStop = FALSE;
 
 //运行标志位
-BOOL gm_bStart=FALSE;
+BOOL gm_bStart = FALSE;
 
 //
-BOOL gm_bTrayPLCStart=FALSE;
+BOOL gm_bTrayPLCStart = FALSE;
 
 //结束标志位
 BOOL gm_bFinish = FALSE;
@@ -35,9 +35,9 @@ BOOL gm_bFinish = FALSE;
 int gm_nTotalInSize = 0;
 
 int gm_nTotalOutSize = 0;
-int gm_nCurrentInSize=0;
-int gm_nCurrentOutSize=0;
-int gm_nSum=0;
+int gm_nCurrentInSize = 0;
+int gm_nCurrentOutSize = 0;
+int gm_nSum = 0;
 int gm_nCurrentGoodSize = 0;
 int gm_nNozzleNum = 1;
 //当前一盘的烧录GN数量
@@ -50,7 +50,7 @@ int gm_nTotalFPFail = 0;
 int gm_nTotalGoodSize = 0;
 int gm_nTotalFailSize = 0;
 
-int gm_nCurrentTotalSize =0;
+int gm_nCurrentTotalSize = 0;
 //显示每个烧录座的OK数量
 int gm_nDisplayGoodForSocket[MAXNUMOFPROGRAMMER*MAXNUMOFSOCKET];
 //显示每个烧录座的NG数量
@@ -130,7 +130,7 @@ CString gm_strSocketModel;
 
 sData gm_sdInfo{ "Customer","WorkNo",0,"ChipModel","ChipBrand",0,0,0,0,0,0,0,"12:20","00/00/2016 00:00:00","00/00/2016 00:00:00","FFFFFFFF","s001" };//日志信息
 //烧录过程错误标识
-UINT gm_bErrorFig[4]{0,0,0,0};
+UINT gm_bErrorFig[4]{ 0,0,0,0 };
 
 //初始旋转角度,PI的几分频，如果等于1，则角度为PI，如果等于2，则角度为PI/2,以此类推
 //如果为0，表示不旋转
@@ -138,97 +138,97 @@ int gm_nRotateAngleIn = 0;
 int gm_nRotateAngleOut = 0;
 int gm_nCurrentGetChip = 0;
 BOOL gm_bComplete = FALSE;
-BOOL gm_bSaveConfig=FALSE;//保存进行打开信号
+BOOL gm_bSaveConfig = FALSE;//保存进行打开信号
 void InitGlobalMembers()
 {
-	
-	gm_nOutOrigePos.x = 0;
-	gm_nTapeOutOffset.x = 0;
-	gm_nOutOrigePos.y = 0;
-	gm_nTapeOutOffset.y = 0;
-	
-	gm_bStockRun = FALSE;
-	gm_nTotalStock = 0;
-	gm_nCurrentStock = 0;
-	gm_nXLength = 200;
-	gm_nYLength = 200;
-	gm_strSpecialInfo = "c:\\SpecialInfo.ini";
-	CIniFile inf;
-	inf.SetIniFileName(gm_strPositionFile);
 
-	gm_dataTray.xn = inf.GetInt("Tray","XN",8);
-	gm_dataTray.yn = inf.GetInt("Tray","YN",12);
+    gm_nOutOrigePos.x = 0;
+    gm_nTapeOutOffset.x = 0;
+    gm_nOutOrigePos.y = 0;
+    gm_nTapeOutOffset.y = 0;
 
-	gm_dataStock.xn = inf.GetInt("Stock","XN",8);
-	gm_dataStock.yn = inf.GetInt("Stock","YN",12);
+    gm_bStockRun = FALSE;
+    gm_nTotalStock = 0;
+    gm_nCurrentStock = 0;
+    gm_nXLength = 200;
+    gm_nYLength = 200;
+    gm_strSpecialInfo = "c:\\SpecialInfo.ini";
+    CIniFile inf;
+    inf.SetIniFileName(gm_strPositionFile);
 
-	gm_dataNG.xn = inf.GetInt("NG","XN",8);
-	gm_dataNG.yn = inf.GetInt("NG","YN",12);
+    gm_dataTray.xn = inf.GetInt("Tray", "XN", 8);
+    gm_dataTray.yn = inf.GetInt("Tray", "YN", 12);
 
-	gm_pTray = new BYTE[gm_dataTray.xn*gm_dataTray.yn];
-	int total = gm_dataTray.xn * gm_dataTray.yn;
-	for(int i=0;i<total;i++)
-		gm_pTray[i] = 2;
+    gm_dataStock.xn = inf.GetInt("Stock", "XN", 8);
+    gm_dataStock.yn = inf.GetInt("Stock", "YN", 12);
 
-	gm_bAutoTray = FALSE;
-	gm_bStock = FALSE;
-	gm_bTapeCheck = FALSE;
-	gm_bDownCameraIn = FALSE;
-	gm_bDownCameraOut = FALSE;
-	gm_bArrivedDownCamera = FALSE;
-	gm_bCheckTapeOut = FALSE;
-	gm_bTrayArrived = FALSE;
-	gm_bBeep = TRUE;
-	for(int i=0;i<MAXNUM_OF_PROGRAMMER;i++)
-	{
-		gm_bPushed[i] = false;
+    gm_dataNG.xn = inf.GetInt("NG", "XN", 8);
+    gm_dataNG.yn = inf.GetInt("NG", "YN", 12);
 
-		gm_sBurningStatus[i].nBusy = 0;
-		gm_sBurningStatus[i].bUsed = true;
-		gm_sBurningStatus[i].nGetChips = 0;
-		gm_sBurningStatus[i].nPutChips = 0;
-		for(int j=0;j<MAXNUM_OF_SOCKET;j++)
-		{
-			gm_sBurningStatus[i].bAdpUsed[j] = true;
-			gm_sBurningStatus[i].bEmpty[j] = true;
-			gm_sBurningStatus[i].nAdpStatus[j] = 0;
-			gm_sBurningStatus[i].bBooking[j] = false;
-			gm_sBurningStatus[i].nContinueFailSize[j] = 0;
-		}
-	}
+    gm_pTray = new BYTE[gm_dataTray.xn*gm_dataTray.yn];
+    int total = gm_dataTray.xn * gm_dataTray.yn;
+    for (int i = 0; i < total; i++)
+        gm_pTray[i] = 2;
 
-	for(int i=0;i<MAXNUM_OF_PROGRAMMER*MAXNUM_OF_SOCKET;i++)
-	{
-		gm_nDisplayFailForSocket[i]=0;
-		gm_nDisplayGoodForSocket[i]=0;
-		sockPutPreference[i]=0;
-		sockGetPreference[i]=0;
-		//gm_bSocketUsed[i] = TRUE;
-	}
+    gm_bAutoTray = FALSE;
+    gm_bStock = FALSE;
+    gm_bTapeCheck = FALSE;
+    gm_bDownCameraIn = FALSE;
+    gm_bDownCameraOut = FALSE;
+    gm_bArrivedDownCamera = FALSE;
+    gm_bCheckTapeOut = FALSE;
+    gm_bTrayArrived = FALSE;
+    gm_bBeep = TRUE;
+    for (int i = 0; i < MAXNUM_OF_PROGRAMMER; i++)
+    {
+        gm_bPushed[i] = false;
 
-	gm_bStart = FALSE;
-	gm_bFinish = FALSE;
-	gm_nCurrentInSize=0;
-	gm_nCurrentOutSize=0;
-	gm_nSum=0;
-	gm_nCurrentGoodSize = 0;
+        gm_sBurningStatus[i].nBusy = 0;
+        gm_sBurningStatus[i].bUsed = true;
+        gm_sBurningStatus[i].nGetChips = 0;
+        gm_sBurningStatus[i].nPutChips = 0;
+        for (int j = 0; j < MAXNUM_OF_SOCKET; j++)
+        {
+            gm_sBurningStatus[i].bAdpUsed[j] = true;
+            gm_sBurningStatus[i].bEmpty[j] = true;
+            gm_sBurningStatus[i].nAdpStatus[j] = 0;
+            gm_sBurningStatus[i].bBooking[j] = false;
+            gm_sBurningStatus[i].nContinueFailSize[j] = 0;
+        }
+    }
+
+    for (int i = 0; i < MAXNUM_OF_PROGRAMMER*MAXNUM_OF_SOCKET; i++)
+    {
+        gm_nDisplayFailForSocket[i] = 0;
+        gm_nDisplayGoodForSocket[i] = 0;
+        sockPutPreference[i] = 0;
+        sockGetPreference[i] = 0;
+        //gm_bSocketUsed[i] = TRUE;
+    }
+
+    gm_bStart = FALSE;
+    gm_bFinish = FALSE;
+    gm_nCurrentInSize = 0;
+    gm_nCurrentOutSize = 0;
+    gm_nSum = 0;
+    gm_nCurrentGoodSize = 0;
     gm_nCurrentFailSize = 0;
-	
-	gm_nTotalGoodSize = 0;
-	gm_nTotalFailSize = 0;
-	gm_uInfo.xySpeed = 3;
-	gm_uInfo.zSpeed = 3;	
-	gm_uInfo.nWorkMode = 0;
-	gm_uInfo.nChipLength = 0;
-	gm_uInfo.nChipWidth = 0;
-	gm_uInfo.nSocketLength = 0;
-	gm_uInfo.nSocketWidth = 0;
-	gm_uInfo.nPixelsPM_down = 0;
-	gm_uInfo.nPixelsPM_up = 0;
-	gm_uInfo.nOffsetInX = 0;
-	gm_uInfo.nOffsetInY = 0;
-	gm_uInfo.nOffsetOutX = 0;
-	gm_uInfo.nOffsetOutY = 0;
-	gm_uInfo.nOffsetSocketX = 0;
-	gm_uInfo.nOffsetSocketY = 0;
+
+    gm_nTotalGoodSize = 0;
+    gm_nTotalFailSize = 0;
+    gm_uInfo.xySpeed = 3;
+    gm_uInfo.zSpeed = 3;
+    gm_uInfo.nWorkMode = 0;
+    gm_uInfo.nChipLength = 0;
+    gm_uInfo.nChipWidth = 0;
+    gm_uInfo.nSocketLength = 0;
+    gm_uInfo.nSocketWidth = 0;
+    gm_uInfo.nPixelsPM_down = 0;
+    gm_uInfo.nPixelsPM_up = 0;
+    gm_uInfo.nOffsetInX = 0;
+    gm_uInfo.nOffsetInY = 0;
+    gm_uInfo.nOffsetOutX = 0;
+    gm_uInfo.nOffsetOutY = 0;
+    gm_uInfo.nOffsetSocketX = 0;
+    gm_uInfo.nOffsetSocketY = 0;
 }

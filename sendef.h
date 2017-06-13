@@ -93,130 +93,130 @@
 
 typedef struct _point
 {
-	double x;
-	double y;
+    double x;
+    double y;
 }Point;
 
 typedef struct _TrayInfo
 {
-	USHORT xn;
-	USHORT yn;
+    USHORT xn;
+    USHORT yn;
 }TrayInfo;
 
 typedef struct
 {
-	double x;
-	double y;
-	double z;
+    double x;
+    double y;
+    double z;
 }Position;
 typedef struct
 {
-	double x;
-	double y;
-	double phi;
+    double x;
+    double y;
+    double phi;
 }Position2;
 typedef struct _uInfo
 {
-	short xySpeed;
-	short zSpeed;
-	int	  nGetTrayHeight;
-	int	  nPutTrayHeight;
-	int   nGetSocketHeight;
-	int   nPutSocketHeight;
-	int   xn;
-	int   yn;
-	int   nTapeIn;
-	int   nTapeOut;
-	int   nTrayTime;
-	int   nSocketTime;
-	float fCheckScore;
-	float fCheckScoreDown;
-	int nNozzleDelay;
-	int   nWorkMode;//Tray,0;tape2tray,1
-	float fTapeInSpeed;
-	float fTapeOutSpeed;
-	float fTapeInStep;
-	float fTapeOutStep;
-	int   nCoverTime;
-	int   nElapsed;
-	float	nPixelsPM_up;
-	float	nPixelsPM_down;
-	float	nChipLength;
-	float	nChipWidth;
-	float	nSocketLength;
-	float	nSocketWidth;
-	float	nTapeLength;
-	float	nTapeWidth;
-	float	nOffsetInX;
-	float	nOffsetInY;
-	float	nOffsetOutX;
-	float	nOffsetOutY;
-	float	nOffsetSocketX;
-	float	nOffsetSocketY;
-	CString strCameraNum;
-	CString strCameraVersion;
-	CString strDownCameraNum;
-	CString strDownCameraVersion;
+    short xySpeed;
+    short zSpeed;
+    int	  nGetTrayHeight;
+    int	  nPutTrayHeight;
+    int   nGetSocketHeight;
+    int   nPutSocketHeight;
+    int   xn;
+    int   yn;
+    int   nTapeIn;
+    int   nTapeOut;
+    int   nTrayTime;
+    int   nSocketTime;
+    float fCheckScore;
+    float fCheckScoreDown;
+    int nNozzleDelay;
+    int   nWorkMode;//Tray,0;tape2tray,1
+    float fTapeInSpeed;
+    float fTapeOutSpeed;
+    float fTapeInStep;
+    float fTapeOutStep;
+    int   nCoverTime;
+    int   nElapsed;
+    float	nPixelsPM_up;
+    float	nPixelsPM_down;
+    float	nChipLength;
+    float	nChipWidth;
+    float	nSocketLength;
+    float	nSocketWidth;
+    float	nTapeLength;
+    float	nTapeWidth;
+    float	nOffsetInX;
+    float	nOffsetInY;
+    float	nOffsetOutX;
+    float	nOffsetOutY;
+    float	nOffsetSocketX;
+    float	nOffsetSocketY;
+    CString strCameraNum;
+    CString strCameraVersion;
+    CString strDownCameraNum;
+    CString strDownCameraVersion;
 
-	CString strCheckSum;
-	CString strProcName;
+    CString strCheckSum;
+    CString strProcName;
 }UserInfo;
 
 typedef struct _tagBurningStatus
 {
-	short  nBusy;
-	short  nPutChips;
-	short  nGetChips;
-	bool  bUsed;
-	bool  bEmpty[4];
-	short nAdpStatus[4]; //0:未烧录状态  1:正在烧录  2:烧录完成，成功  3; 烧录完成，失败
-	bool  bAdpUsed[4];
-	int nContinueFailSize[4];
-	DWORD dwStartTime;//记录模组的开始烧录时间
-	DWORD dwNoEmptyTime[4];//记录烧录座放入芯片的时间
-	bool bStartBurnFlag;//开始烧录标志
-	bool bBooking[4];//对应座子的预定信息，针对多吸嘴
+    short  nBusy;
+    short  nPutChips;
+    short  nGetChips;
+    bool  bUsed;
+    bool  bEmpty[4];
+    short nAdpStatus[4]; //0:未烧录状态  1:正在烧录  2:烧录完成，成功  3; 烧录完成，失败
+    bool  bAdpUsed[4];
+    int nContinueFailSize[4];
+    DWORD dwStartTime;//记录模组的开始烧录时间
+    DWORD dwNoEmptyTime[4];//记录烧录座放入芯片的时间
+    bool bStartBurnFlag;//开始烧录标志
+    bool bBooking[4];//对应座子的预定信息，针对多吸嘴
 }BurningStatus;
 
 typedef struct
 {
-	BYTE MsgType;
-	BYTE Index;
-	BYTE Action;
-	BYTE AdpStatus;
-	int  Step;
-	int  Max;
-	int  Position;
+    BYTE MsgType;
+    BYTE Index;
+    BYTE Action;
+    BYTE AdpStatus;
+    int  Step;
+    int  Max;
+    int  Position;
 }TPbInfo;
 
 typedef struct
 {
-	char Serial[16];  // SerialNumber
-	int  DrvIndex;    // -1 = not present
-	int  DevStatus;  // Reserved
+    char Serial[16];  // SerialNumber
+    int  DrvIndex;    // -1 = not present
+    int  DevStatus;  // Reserved
 }DevInfo;
 
 //报表数据
 typedef struct
 {
-	CString strCustomer;
-	CString  strWorkNo;
-	int nLotNum;
-	CString  strICBrand;
-	CString  strICModel;
-	int nPass;
-	float fYield;
-	int nProgNG;
-	int nSysNG;
-	float fFailRate;
-	int nUPH;
-	int nInput;
-	CString  strRunTime;
-	CString  strStartTime;
-	CString  strEndTime;
-	CString  strCheckSum;
-	CString  strOperator;
-	CString  strDate;
+    CString strCustomer;
+    CString  strWorkNo;
+    int nLotNum;
+    CString  strICBrand;
+    CString  strICModel;
+    int nPass;
+    float fYield;
+    int nProgNG;
+    int nSysNG;
+    float fFailRate;
+    int nUPH;
+    int nInput;
+    CString  strRunTime;
+    CString  strStartTime;
+    CString  strEndTime;
+    CString  strCheckSum;
+    CString  strOperator;
+    CString  strDate;
 }sData;
 
 #endif

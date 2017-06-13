@@ -4,11 +4,11 @@
 class CHttpContext
 {
 public:
-	CHttpContext();
-	CHttpContext(const char* reqStr);
-	~CHttpContext();
+    CHttpContext();
+    CHttpContext(const char* reqStr);
+    ~CHttpContext();
 public:
-	CHttpRequestA request;
-	CHttpResponseA response;
+    CHttpRequestA request;
+    CHttpResponseA response;
 };
 

@@ -12,46 +12,46 @@
 
 class CDlgReject : public CDialog
 {
-// Construction
+    // Construction
 public:
-	CDlgReject(CWnd* pParent = NULL);   // standard constructor
-BOOL SearchHeight();
-// Dialog Data
-	//{{AFX_DATA(CDlgReject)
-	enum { IDD = IDD_POSITION_NGBIN };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+    CDlgReject(CWnd* pParent = NULL);   // standard constructor
+    BOOL SearchHeight();
+    // Dialog Data
+        //{{AFX_DATA(CDlgReject)
+    enum { IDD = IDD_POSITION_NGBIN };
+    // NOTE: the ClassWizard will add data members here
+//}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CDlgReject)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CDlgReject)
+protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CDlgReject)
-	afx_msg void OnNgbinCcdto1();
-	afx_msg void OnNgbinSave1();
-	afx_msg void OnNgbinCcdto2();
-	afx_msg void OnNgbinSave2();
-	afx_msg void OnNgbinCcdto3();
-	afx_msg void OnNgbinSave3();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnNgbinSave5();
-	afx_msg void OnNgbinCcdto4();
-	afx_msg void OnNgbinCcdto5();
-	afx_msg void OnNgbinCcdto6();
-	afx_msg void OnPaint();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(CDlgReject)
+    afx_msg void OnNgbinCcdto1();
+    afx_msg void OnNgbinSave1();
+    afx_msg void OnNgbinCcdto2();
+    afx_msg void OnNgbinSave2();
+    afx_msg void OnNgbinCcdto3();
+    afx_msg void OnNgbinSave3();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnNgbinSave5();
+    afx_msg void OnNgbinCcdto4();
+    afx_msg void OnNgbinCcdto5();
+    afx_msg void OnNgbinCcdto6();
+    afx_msg void OnPaint();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedNgbinSave7();
-	afx_msg void OnBnClickedNgbinSave6();
+    afx_msg void OnBnClickedNgbinSave7();
+    afx_msg void OnBnClickedNgbinSave6();
 };
 
 //{{AFX_INSERT_LOCATION}}

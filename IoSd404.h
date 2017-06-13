@@ -11,7 +11,7 @@ BOOL CheckPositiveMeter();//ÕýÑ¹±í
 BOOL CheckFeederOutError();
 BOOL CheckModelCylinderPressed(INT nModelNum);
 BOOL CheckNozzleUpStatus(INT nNozzleNum);
- 
+
 VOID TrayComplete();
 VOID SetFeederOut();
 VOID SetFeedIn();

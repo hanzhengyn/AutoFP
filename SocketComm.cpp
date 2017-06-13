@@ -51,7 +51,7 @@ SockAddrIn& SockAddrIn::Copy(const SockAddrIn& sin)
 bool SockAddrIn::IsEqual(const SockAddrIn& sin) const
 {
     // Is it Equal? - ignore 'sin_zero'
-    return (memcmp(this, &sin, Size()-sizeof(sin_zero)) == 0);
+    return (memcmp(this, &sin, Size() - sizeof(sin_zero)) == 0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ bool SockAddrIn::IsEqual(const SockAddrIn& sin) const
 bool SockAddrIn::IsGreater(const SockAddrIn& sin) const
 {
     // Is it Greater? - ignore 'sin_zero'
-    return (memcmp(this, &sin, Size()-sizeof(sin_zero)) > 0);
+    return (memcmp(this, &sin, Size() - sizeof(sin_zero)) > 0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ bool SockAddrIn::IsGreater(const SockAddrIn& sin) const
 bool SockAddrIn::IsLower(const SockAddrIn& sin) const
 {
     // Is it Lower? - ignore 'sin_zero'
-    return (memcmp(this, &sin, Size()-sizeof(sin_zero)) < 0);
+    return (memcmp(this, &sin, Size() - sizeof(sin_zero)) < 0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -75,8 +75,8 @@ bool SockAddrIn::IsLower(const SockAddrIn& sin) const
 bool SockAddrIn::CreateFrom(LPCTSTR sAddr, LPCTSTR sService, int nFamily /*=AF_INET*/)
 {
     Clear();
-    sin_addr.s_addr = htonl( CSocketComm::GetIPAddress(sAddr) );
-    sin_port = htons( CSocketComm::GetPortNumber( sService ) );
+    sin_addr.s_addr = htonl(CSocketComm::GetIPAddress(sAddr));
+    sin_port = htons(CSocketComm::GetPortNumber(sService));
     sin_family = nFamily;
     return !IsNull();
 }
@@ -104,7 +104,7 @@ CSocketComm::~CSocketComm()
 // IsOpen
 bool CSocketComm::IsOpen() const
 {
-    return ( INVALID_HANDLE_VALUE != m_hComm );
+    return (INVALID_HANDLE_VALUE != m_hComm);
 }
 
 
@@ -112,7 +112,7 @@ bool CSocketComm::IsOpen() const
 // IsStart
 bool CSocketComm::IsStart() const
 {
-    return ( NULL != m_hThread );
+    return (NULL != m_hThread);
 }
 
 
@@ -144,7 +144,7 @@ bool CSocketComm::IsSmartAddressing() const
 // GetSocket
 SOCKET CSocketComm::GetSocket() const
 {
-    return (SOCKET) m_hComm;
+    return (SOCKET)m_hComm;
 }
 
 
@@ -171,7 +171,7 @@ void CSocketComm::UnlockList()
 void CSocketComm::AddToList(const SockAddrIn& saddr_in)
 {
     LockList();
-    m_AddrList.insert( m_AddrList.end(), saddr_in );
+    m_AddrList.insert(m_AddrList.end(), saddr_in);
     UnlockList();
 }
 
@@ -180,7 +180,7 @@ void CSocketComm::AddToList(const SockAddrIn& saddr_in)
 void CSocketComm::RemoveFromList(const SockAddrIn& saddr_in)
 {
     LockList();
-    m_AddrList.remove( saddr_in );
+    m_AddrList.remove(saddr_in);
     UnlockList();
 }
 
@@ -235,28 +235,28 @@ void CSocketComm::OnEvent(UINT uEvent, LPVOID lpvData)
 // PARAMETERS:
 //  LPCTSTR strServiceName: Service name or port string
 ///////////////////////////////////////////////////////////////////////////////
-USHORT CSocketComm::GetPortNumber( LPCTSTR strServiceName )
+USHORT CSocketComm::GetPortNumber(LPCTSTR strServiceName)
 {
     LPSERVENT   lpservent;
     USHORT      nPortNumber = 0;
 
-    if ( _istdigit( strServiceName[0] ) ) {
-        nPortNumber = (USHORT) _ttoi( strServiceName );
+    if (_istdigit(strServiceName[0])) {
+        nPortNumber = (USHORT)_ttoi(strServiceName);
     }
     else {
 #ifdef _UNICODE
         char pstrService[HOSTNAME_SIZE];
-        WideCharToMultiByte(CP_ACP, 0, strServiceName, -1, pstrService, sizeof(pstrService), NULL, NULL );
+        WideCharToMultiByte(CP_ACP, 0, strServiceName, -1, pstrService, sizeof(pstrService), NULL, NULL);
 #else
         LPCTSTR pstrService = strServiceName;
 #endif
         // Convert network byte order to host byte order
-        if ( (lpservent = getservbyname( pstrService, NULL )) != NULL )
-            nPortNumber = ntohs( lpservent->s_port );
+        if ((lpservent = getservbyname(pstrService, NULL)) != NULL)
+            nPortNumber = ntohs(lpservent->s_port);
     }
 
     return nPortNumber;
-} 
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -269,14 +269,14 @@ USHORT CSocketComm::GetPortNumber( LPCTSTR strServiceName )
 // PARAMETERS:
 //  LPCTSTR strHostName: host name to get IP address
 ///////////////////////////////////////////////////////////////////////////////
-ULONG CSocketComm::GetIPAddress( LPCTSTR strHostName )
+ULONG CSocketComm::GetIPAddress(LPCTSTR strHostName)
 {
     LPHOSTENT   lphostent;
     ULONG       uAddr = INADDR_NONE;
     TCHAR       strLocal[HOSTNAME_SIZE] = { 0 };
 
     // if no name specified, get local
-    if ( NULL == strHostName )
+    if (NULL == strHostName)
     {
         GetLocalName(strLocal, sizeof(strLocal));
         strHostName = strLocal;
@@ -284,22 +284,22 @@ ULONG CSocketComm::GetIPAddress( LPCTSTR strHostName )
 
 #ifdef _UNICODE
     char strHost[HOSTNAME_SIZE] = { 0 };
-    WideCharToMultiByte(CP_ACP, 0, strHostName, -1, strHost, sizeof(strHost), NULL, NULL );
+    WideCharToMultiByte(CP_ACP, 0, strHostName, -1, strHost, sizeof(strHost), NULL, NULL);
 #else
     LPCTSTR strHost = strHostName;
 #endif
 
     // Check for an Internet Protocol dotted address string
-    uAddr = inet_addr( strHost );
+    uAddr = inet_addr(strHost);
 
-    if ( (INADDR_NONE == uAddr) && (strcmp( strHost, "255.255.255.255" )) )
+    if ((INADDR_NONE == uAddr) && (strcmp(strHost, "255.255.255.255")))
     {
         // It's not an address, then try to resolve it as a hostname
-        if ( lphostent = gethostbyname( strHost ) )
-            uAddr = *((ULONG *) lphostent->h_addr_list[0]);
+        if (lphostent = gethostbyname(strHost))
+            uAddr = *((ULONG *)lphostent->h_addr_list[0]);
     }
-    
-    return ntohl( uAddr );
+
+    return ntohl(uAddr);
 }
 
 
@@ -336,7 +336,7 @@ bool CSocketComm::GetLocalName(LPTSTR strName, UINT nSize)
 
             // Unicode conversion
 #ifdef _UNICODE
-            return (0 != MultiByteToWideChar(CP_ACP, 0, strHost, -1, strName, nSize ));
+            return (0 != MultiByteToWideChar(CP_ACP, 0, strHost, -1, strName, nSize));
 #else
             _tcscpy(strName, strHost);
             return true;
@@ -373,7 +373,7 @@ bool CSocketComm::GetLocalAddress(LPTSTR strAddress, UINT nSize)
             if (hp != NULL && hp->h_addr_list[0] != NULL)
             {
                 // IPv4: Address is four bytes (32-bit)
-                if ( hp->h_length < 4)
+                if (hp->h_length < 4)
                     return false;
 
                 // Convert address to . format
@@ -381,10 +381,10 @@ bool CSocketComm::GetLocalAddress(LPTSTR strAddress, UINT nSize)
 
                 // IPv4: Create Address string
                 sprintf(strHost, "%u.%u.%u.%u",
-                    (UINT)(((PBYTE) hp->h_addr_list[0])[0]),
-                    (UINT)(((PBYTE) hp->h_addr_list[0])[1]),
-                    (UINT)(((PBYTE) hp->h_addr_list[0])[2]),
-                    (UINT)(((PBYTE) hp->h_addr_list[0])[3]));
+                    (UINT)(((PBYTE)hp->h_addr_list[0])[0]),
+                    (UINT)(((PBYTE)hp->h_addr_list[0])[1]),
+                    (UINT)(((PBYTE)hp->h_addr_list[0])[2]),
+                    (UINT)(((PBYTE)hp->h_addr_list[0])[3]));
 
                 // check if user provide enough buffer
                 if (strlen(strHost) > nSize)
@@ -393,9 +393,9 @@ bool CSocketComm::GetLocalAddress(LPTSTR strAddress, UINT nSize)
                     return false;
                 }
 
-            // Unicode conversion
+                // Unicode conversion
 #ifdef _UNICODE
-                return (0 != MultiByteToWideChar(CP_ACP, 0, strHost, -1, strAddress,nSize ));
+                return (0 != MultiByteToWideChar(CP_ACP, 0, strHost, -1, strAddress, nSize));
 #else
                 _tcscpy(strAddress, strHost);
                 return true;
@@ -438,7 +438,7 @@ SOCKET CSocketComm::WaitForConnection(SOCKET sock)
 bool CSocketComm::ShutdownConnection(SOCKET sock)
 {
     shutdown(sock, SD_BOTH);
-    return ( 0 == closesocket( sock ));
+    return (0 == closesocket(sock));
 }
 
 
@@ -475,7 +475,7 @@ bool CSocketComm::GetPeerName(SockAddrIn& saddr_in)
     if (IsOpen())
     {
         int namelen = saddr_in.Size();
-        return (SOCKET_ERROR != getpeername(GetSocket(), saddr_in, &namelen));  
+        return (SOCKET_ERROR != getpeername(GetSocket(), saddr_in, &namelen));
     }
 
     return false;
@@ -491,22 +491,22 @@ bool CSocketComm::GetPeerName(SockAddrIn& saddr_in)
 ///////////////////////////////////////////////////////////////////////////////
 bool CSocketComm::AddMembership(LPCTSTR strAddress)
 {
-    if ( IsOpen() )
+    if (IsOpen())
     {
         int nType = 0;
         int nOptLen = sizeof(int);
-        SOCKET sock = (SOCKET) m_hComm;
-        if ( SOCKET_ERROR != getsockopt(sock, SOL_SOCKET, SO_TYPE, (char*)&nType, &nOptLen))
+        SOCKET sock = (SOCKET)m_hComm;
+        if (SOCKET_ERROR != getsockopt(sock, SOL_SOCKET, SO_TYPE, (char*)&nType, &nOptLen))
         {
-            if ( nType == SOCK_DGRAM )
+            if (nType == SOCK_DGRAM)
             {
                 int nTTL = 5;
-                if ( SOCKET_ERROR != setsockopt(sock, IPPROTO_IP, IP_MULTICAST_TTL, (const char*)&nTTL, sizeof(nTTL)))
+                if (SOCKET_ERROR != setsockopt(sock, IPPROTO_IP, IP_MULTICAST_TTL, (const char*)&nTTL, sizeof(nTTL)))
                 {
                     ip_mreq mreq;
-                    mreq.imr_multiaddr.s_addr = htonl( CSocketComm::GetIPAddress( strAddress ) );
-                    mreq.imr_interface.s_addr = htonl( INADDR_ANY );
-                    return ( SOCKET_ERROR != setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (const char*)&mreq, sizeof(mreq)));
+                    mreq.imr_multiaddr.s_addr = htonl(CSocketComm::GetIPAddress(strAddress));
+                    mreq.imr_interface.s_addr = htonl(INADDR_ANY);
+                    return (SOCKET_ERROR != setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (const char*)&mreq, sizeof(mreq)));
                 }
             }
         }
@@ -525,19 +525,19 @@ bool CSocketComm::AddMembership(LPCTSTR strAddress)
 ///////////////////////////////////////////////////////////////////////////////
 bool CSocketComm::DropMembership(LPCTSTR strAddress)
 {
-    if ( IsOpen() )
+    if (IsOpen())
     {
         int nType = 0;
         int nOptLen = sizeof(int);
-        SOCKET sock = (SOCKET) m_hComm;
-        if ( SOCKET_ERROR != getsockopt(sock, SOL_SOCKET, SO_TYPE, (char*)&nType, &nOptLen))
+        SOCKET sock = (SOCKET)m_hComm;
+        if (SOCKET_ERROR != getsockopt(sock, SOL_SOCKET, SO_TYPE, (char*)&nType, &nOptLen))
         {
-            if ( nType == SOCK_DGRAM )
+            if (nType == SOCK_DGRAM)
             {
                 ip_mreq mreq;
-                mreq.imr_multiaddr.s_addr = htonl( CSocketComm::GetIPAddress( strAddress ) );
-                mreq.imr_interface.s_addr = htonl( INADDR_ANY );
-                return ( SOCKET_ERROR != setsockopt(sock, IPPROTO_IP, IP_DROP_MEMBERSHIP, (const char*)&mreq, sizeof(mreq)));
+                mreq.imr_multiaddr.s_addr = htonl(CSocketComm::GetIPAddress(strAddress));
+                mreq.imr_interface.s_addr = htonl(INADDR_ANY);
+                return (SOCKET_ERROR != setsockopt(sock, IPPROTO_IP, IP_DROP_MEMBERSHIP, (const char*)&mreq, sizeof(mreq)));
             }
         }
     }
@@ -563,7 +563,7 @@ bool CSocketComm::DropMembership(LPCTSTR strAddress)
 bool CSocketComm::CreateSocketEx(LPCTSTR strHost, LPCTSTR strServiceName, int nFamily, int nType, UINT uOptions /* = 0 */)
 {
     // Socket is already opened
-    if ( IsOpen() )
+    if (IsOpen())
         return false;
 
     // Create a Socket that is bound to a specific service provide
@@ -577,9 +577,9 @@ bool CSocketComm::CreateSocketEx(LPCTSTR strHost, LPCTSTR strServiceName, int nF
             // Inform Windows Sockets provider that a bind on a socket should not be disallowed
             // because the desired address is already in use by another socket
             BOOL optval = TRUE;
-            if ( SOCKET_ERROR == setsockopt( sock, SOL_SOCKET, SO_REUSEADDR, (char *) &optval, sizeof( BOOL ) ) )
+            if (SOCKET_ERROR == setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(BOOL)))
             {
-                closesocket( sock );
+                closesocket(sock);
                 return false;
             }
         }
@@ -590,9 +590,9 @@ bool CSocketComm::CreateSocketEx(LPCTSTR strHost, LPCTSTR strServiceName, int nF
             {
                 // Inform Windows Sockets provider that broadcast messages are allowed
                 BOOL optval = TRUE;
-                if ( SOCKET_ERROR == setsockopt( sock, SOL_SOCKET, SO_BROADCAST, (char *) &optval, sizeof( BOOL ) ) )
+                if (SOCKET_ERROR == setsockopt(sock, SOL_SOCKET, SO_BROADCAST, (char *)&optval, sizeof(BOOL)))
                 {
-                    closesocket( sock );
+                    closesocket(sock);
                     return false;
                 }
             }
@@ -602,24 +602,24 @@ bool CSocketComm::CreateSocketEx(LPCTSTR strHost, LPCTSTR strServiceName, int nF
         SockAddrIn sockAddr;
         sockAddr.CreateFrom(strHost, strServiceName, nFamily);
 
-        if ( SOCKET_ERROR == bind(sock, sockAddr, sockAddr.Size()))
+        if (SOCKET_ERROR == bind(sock, sockAddr, sockAddr.Size()))
         {
-            closesocket( sock );
+            closesocket(sock);
             return false;
         }
 
         // Listen to the socket, only valid for connection socket
         if (SOCK_STREAM == nType)
         {
-            if ( SOCKET_ERROR == listen(sock, SOMAXCONN))
+            if (SOCKET_ERROR == listen(sock, SOMAXCONN))
             {
-                closesocket( sock );
+                closesocket(sock);
                 return false;
             }
         }
 
         // Success, now we may save this socket
-        m_hComm = (HANDLE) sock;
+        m_hComm = (HANDLE)sock;
     }
 
     return (INVALID_SOCKET != sock);
@@ -659,7 +659,7 @@ bool CSocketComm::CreateSocket(LPCTSTR strServiceName, int nFamily, int nType, U
 bool CSocketComm::ConnectTo(LPCTSTR strDestination, LPCTSTR strServiceName, int nFamily, int nType)
 {
     // Socket is already opened
-    if ( IsOpen() )
+    if (IsOpen())
         return false;
 
     // Create a Socket that is bound to a specific service provide
@@ -672,28 +672,28 @@ bool CSocketComm::ConnectTo(LPCTSTR strDestination, LPCTSTR strServiceName, int 
         SockAddrIn sockAddr;
         if (false == sockAddr.CreateFrom(NULL, TEXT("0"), nFamily))
         {
-            closesocket( sock );
+            closesocket(sock);
             return false;
         }
 
-        if ( SOCKET_ERROR == bind(sock, sockAddr, sockAddr.Size() ))
+        if (SOCKET_ERROR == bind(sock, sockAddr, sockAddr.Size()))
         {
-            closesocket( sock );
+            closesocket(sock);
             return false;
         }
 
         // Now get destination address & port
-        sockAddr.CreateFrom( strDestination, strServiceName );
+        sockAddr.CreateFrom(strDestination, strServiceName);
 
         // try to connect - if fail, server not ready
-        if (SOCKET_ERROR == connect( sock, sockAddr, sockAddr.Size()))
+        if (SOCKET_ERROR == connect(sock, sockAddr, sockAddr.Size()))
         {
-            closesocket( sock );
+            closesocket(sock);
             return false;
         }
 
         // Success, now we may save this socket
-        m_hComm = (HANDLE) sock;
+        m_hComm = (HANDLE)sock;
     }
     return (INVALID_SOCKET != sock);
 }
@@ -735,16 +735,16 @@ bool CSocketComm::WatchComm()
             HANDLE hThread;
             UINT uiThreadId = 0;
             hThread = (HANDLE)_beginthreadex(NULL,  // Security attributes
-                                      0,    // stack
-                        SocketThreadProc,   // Thread proc
-                                    this,   // Thread param
-                        CREATE_SUSPENDED,   // creation mode
-                            &uiThreadId);   // Thread ID
+                0,    // stack
+                SocketThreadProc,   // Thread proc
+                this,   // Thread param
+                CREATE_SUSPENDED,   // creation mode
+                &uiThreadId);   // Thread ID
 
-            if ( NULL != hThread)
+            if (NULL != hThread)
             {
                 //SetThreadPriority(hThread, THREAD_PRIORITY_ABOVE_NORMAL);
-                ResumeThread( hThread );
+                ResumeThread(hThread);
                 m_hThread = hThread;
                 return true;
             }
@@ -789,7 +789,7 @@ void CSocketComm::StopComm()
     // Destroy Synchronization objects
     if (NULL != m_hMutex)
     {
-        CloseHandle( m_hMutex );
+        CloseHandle(m_hMutex);
         m_hMutex = NULL;
     }
 
@@ -808,31 +808,31 @@ void CSocketComm::StopComm()
 ///////////////////////////////////////////////////////////////////////////////
 DWORD CSocketComm::ReadComm(LPBYTE lpBuffer, DWORD dwSize, DWORD dwTimeout)
 {
-    _ASSERTE( IsOpen() );
-    _ASSERTE( lpBuffer != NULL );
+    _ASSERTE(IsOpen());
+    _ASSERTE(lpBuffer != NULL);
 
     if (lpBuffer == NULL || dwSize < 1L)
         return 0L;
 
-    fd_set  fdRead  = { 0 };
+    fd_set  fdRead = { 0 };
     TIMEVAL stTime;
     TIMEVAL *pstTime = NULL;
 
-    if ( INFINITE != dwTimeout ) {
-        stTime.tv_sec = dwTimeout/1000;
-        stTime.tv_usec = (dwTimeout%1000)*1000;
+    if (INFINITE != dwTimeout) {
+        stTime.tv_sec = dwTimeout / 1000;
+        stTime.tv_usec = (dwTimeout % 1000) * 1000;
         pstTime = &stTime;
     }
 
-    SOCKET s = (SOCKET) m_hComm;
+    SOCKET s = (SOCKET)m_hComm;
     // Set Descriptor
-    if ( !FD_ISSET( s, &fdRead ) )
-        FD_SET( s, &fdRead );
+    if (!FD_ISSET(s, &fdRead))
+        FD_SET(s, &fdRead);
 
     // Select function set read timeout
     DWORD dwBytesRead = 0L;
-    int res = select( s+1, &fdRead, NULL, NULL, pstTime );
-    if ( res > 0)
+    int res = select(s + 1, &fdRead, NULL, NULL, pstTime);
+    if (res > 0)
     {
         if (IsBroadcast() || IsSmartAddressing())
         {
@@ -840,22 +840,22 @@ DWORD CSocketComm::ReadComm(LPBYTE lpBuffer, DWORD dwSize, DWORD dwTimeout)
             sockAddr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
             int nLen = sockAddr.Size();
             int nOffset = IsSmartAddressing() ? nLen : 0; // use offset for Smart addressing
-            if ( dwSize < (DWORD) nOffset)  // error - buffer to small
+            if (dwSize < (DWORD)nOffset)  // error - buffer to small
             {
-                SetLastError( ERROR_INVALID_USER_BUFFER );
+                SetLastError(ERROR_INVALID_USER_BUFFER);
                 return -1L;
             }
             LPSTR lpszData = (LPSTR)(lpBuffer + nOffset);
-            res = recvfrom( s, lpszData, dwSize-nOffset, 0, sockAddr, &nLen);
+            res = recvfrom(s, lpszData, dwSize - nOffset, 0, sockAddr, &nLen);
 
             // clear 'sin_zero', we will ignore them with 'SockAddrIn' anyway!
             memset(&sockAddr.sin_zero, 0, sizeof(sockAddr.sin_zero));
 
             // Lock the list...
             LockList();
-            m_AddrList.remove( sockAddr );
+            m_AddrList.remove(sockAddr);
 
-            if ( res >= 0)
+            if (res >= 0)
             {
                 // insert unique address
                 m_AddrList.insert(m_AddrList.end(), sockAddr);
@@ -876,10 +876,10 @@ DWORD CSocketComm::ReadComm(LPBYTE lpBuffer, DWORD dwSize, DWORD dwTimeout)
         }
         else
         {
-            res = recv( s, (LPSTR)lpBuffer, dwSize, 0);
+            res = recv(s, (LPSTR)lpBuffer, dwSize, 0);
         }
     }
-    dwBytesRead = (DWORD)((res > 0)?(res) : (-1L));
+    dwBytesRead = (DWORD)((res > 0) ? (res) : (-1L));
 
     return dwBytesRead;
 }
@@ -897,57 +897,57 @@ DWORD CSocketComm::ReadComm(LPBYTE lpBuffer, DWORD dwSize, DWORD dwTimeout)
 ///////////////////////////////////////////////////////////////////////////////
 DWORD CSocketComm::WriteComm(const LPBYTE lpBuffer, DWORD dwCount, DWORD dwTimeout)
 {
-    _ASSERTE( IsOpen() );
-    _ASSERTE( NULL != lpBuffer );
+    _ASSERTE(IsOpen());
+    _ASSERTE(NULL != lpBuffer);
 
     // Accept 0 bytes message
     if (!IsOpen() || NULL == lpBuffer)
         return 0L;
 
-    fd_set  fdWrite  = { 0 };
+    fd_set  fdWrite = { 0 };
     TIMEVAL stTime;
     TIMEVAL *pstTime = NULL;
 
-    if ( INFINITE != dwTimeout ) {
-        stTime.tv_sec = dwTimeout/1000;
-        stTime.tv_usec = (dwTimeout%1000)*1000;
+    if (INFINITE != dwTimeout) {
+        stTime.tv_sec = dwTimeout / 1000;
+        stTime.tv_usec = (dwTimeout % 1000) * 1000;
         pstTime = &stTime;
     }
 
-    SOCKET s = (SOCKET) m_hComm;
+    SOCKET s = (SOCKET)m_hComm;
     // Set Descriptor
-    if ( !FD_ISSET( s, &fdWrite ) )
-        FD_SET( s, &fdWrite );
+    if (!FD_ISSET(s, &fdWrite))
+        FD_SET(s, &fdWrite);
 
     // Select function set write timeout
     DWORD dwBytesWritten = 0L;
-    int res = select( s+1, NULL, &fdWrite, NULL, pstTime );
-    if ( res > 0)
+    int res = select(s + 1, NULL, &fdWrite, NULL, pstTime);
+    if (res > 0)
     {
         // Send message to peer or broadcast it
         bool bSmartAddressing = IsSmartAddressing();
-        if (IsBroadcast() || bSmartAddressing )
+        if (IsBroadcast() || bSmartAddressing)
         {
             // use offset for Smart addressing
             int nOffset = bSmartAddressing ? sizeof(SOCKADDR_IN) : 0;
             if (bSmartAddressing)
             {
-                if ( dwCount < sizeof(SOCKADDR_IN)) // error - buffer to small
+                if (dwCount < sizeof(SOCKADDR_IN)) // error - buffer to small
                 {
-                    SetLastError( ERROR_INVALID_USER_BUFFER );
+                    SetLastError(ERROR_INVALID_USER_BUFFER);
                     return -1L;
                 }
 
                 // read socket address from buffer
                 SockAddrIn sockAddr;
-                sockAddr.SetAddr((PSOCKADDR_IN) lpBuffer);
+                sockAddr.SetAddr((PSOCKADDR_IN)lpBuffer);
 
                 // Get Address and send data
                 if (sockAddr.sin_addr.s_addr != htonl(INADDR_BROADCAST))
                 {
                     LPSTR lpszData = (LPSTR)(lpBuffer + nOffset);
-                    res = sendto( s, lpszData, dwCount-nOffset, 0, sockAddr, sockAddr.Size());
-                    dwBytesWritten = (DWORD)((res >= 0)?(res) : (-1));
+                    res = sendto(s, lpszData, dwCount - nOffset, 0, sockAddr, sockAddr.Size());
+                    dwBytesWritten = (DWORD)((res >= 0) ? (res) : (-1));
                     return dwBytesWritten;
                 }
                 else
@@ -956,16 +956,16 @@ DWORD CSocketComm::WriteComm(const LPBYTE lpBuffer, DWORD dwCount, DWORD dwTimeo
                     LockList(); // Lock this object addresses-list
 
                     CSockAddrList::iterator iter = m_AddrList.begin();
-                    for( ; iter != m_AddrList.end(); )
+                    for (; iter != m_AddrList.end(); )
                     {
                         // Fix v1.3 - nOffset was missing
                         sockAddr = (*iter);
-                        res = sendto( s, (LPCSTR)&lpBuffer[nOffset], dwCount-nOffset, 0, sockAddr, iter->Size());
+                        res = sendto(s, (LPCSTR)&lpBuffer[nOffset], dwCount - nOffset, 0, sockAddr, iter->Size());
                         if (res < 0)
                         {
                             CSockAddrList::iterator deladdr = iter;
                             ++iter; // get next
-                            m_AddrList.erase( deladdr );
+                            m_AddrList.erase(deladdr);
                         }
                         else
                             ++iter; // get next
@@ -974,12 +974,12 @@ DWORD CSocketComm::WriteComm(const LPBYTE lpBuffer, DWORD dwCount, DWORD dwTimeo
                 }
             }
             // always return success - UDP
-            res = (int) dwCount - nOffset;
+            res = (int)dwCount - nOffset;
         }
         else // Send to peer-connection
-            res = send( s, (LPCSTR)lpBuffer, dwCount, 0);
+            res = send(s, (LPCSTR)lpBuffer, dwCount, 0);
     }
-    dwBytesWritten = (DWORD)((res >= 0)?(res) : (-1L));
+    dwBytesWritten = (DWORD)((res >= 0) ? (res) : (-1L));
 
     return dwBytesWritten;
 }
@@ -999,13 +999,13 @@ DWORD CSocketComm::WriteComm(const LPBYTE lpBuffer, DWORD dwCount, DWORD dwTimeo
 void CSocketComm::Run()
 {
     stMessageProxy stMsgProxy;
-    DWORD   dwBytes  = 0L;
+    DWORD   dwBytes = 0L;
     DWORD   dwTimeout = INFINITE;
-    LPBYTE  lpData  = (LPBYTE)&stMsgProxy;
-    DWORD   dwSize  = sizeof(stMsgProxy);
+    LPBYTE  lpData = (LPBYTE)&stMsgProxy;
+    DWORD   dwSize = sizeof(stMsgProxy);
 
     bool bSmartAddressing = IsSmartAddressing();
-    if ( !bSmartAddressing )
+    if (!bSmartAddressing)
     {
         lpData = stMsgProxy.byData;
         dwSize = sizeof(stMsgProxy.byData);
@@ -1016,28 +1016,28 @@ void CSocketComm::Run()
     {
         if (!IsBroadcast())
         {
-            SOCKET sock = (SOCKET) m_hComm;
-            sock = WaitForConnection( sock );
+            SOCKET sock = (SOCKET)m_hComm;
+            sock = WaitForConnection(sock);
 
             // Get new connection socket
             if (sock != INVALID_SOCKET)
             {
-                ShutdownConnection( (SOCKET) m_hComm);
-                m_hComm = (HANDLE) sock;
-                OnEvent( EVT_CONSUCCESS, NULL ); // connect
+                ShutdownConnection((SOCKET)m_hComm);
+                m_hComm = (HANDLE)sock;
+                OnEvent(EVT_CONSUCCESS, NULL); // connect
             }
             else
             {
                 // Do not send event if we are closing
                 if (IsOpen())
-                    OnEvent( EVT_CONFAILURE, NULL ); // wait fail
+                    OnEvent(EVT_CONFAILURE, NULL); // wait fail
                 return;
             }
         }
     }
-    
 
-    while( IsOpen() )
+
+    while (IsOpen())
     {
         // Blocking mode: Wait for event
         dwBytes = ReadComm(lpData, dwSize, dwTimeout);
@@ -1048,28 +1048,28 @@ void CSocketComm::Run()
             // Do not send event if we are closing
             if (IsOpen())
             {
-                if ( bSmartAddressing )
+                if (bSmartAddressing)
                 {
-                    RemoveFromList( stMsgProxy.address );
+                    RemoveFromList(stMsgProxy.address);
                 }
-                OnEvent( EVT_CONDROP, &stMsgProxy.address ); // lost connection
+                OnEvent(EVT_CONDROP, &stMsgProxy.address); // lost connection
             }
 
             // special case for UDP, alert about the event but do not stop
-            if ( bSmartAddressing )
+            if (bSmartAddressing)
                 continue;
             else
                 break;
         }
 
         // Chars received?
-        if ( bSmartAddressing && dwBytes == sizeof(SOCKADDR_IN))
+        if (bSmartAddressing && dwBytes == sizeof(SOCKADDR_IN))
         {
-            OnEvent( EVT_ZEROLENGTH, NULL );
+            OnEvent(EVT_ZEROLENGTH, NULL);
         }
         else if (dwBytes > 0L)
         {
-            OnDataReceived( lpData, dwBytes);
+            OnDataReceived(lpData, dwBytes);
         }
 
         //Sleep(0);
@@ -1089,8 +1089,8 @@ void CSocketComm::Run()
 ///////////////////////////////////////////////////////////////////////////////
 UINT WINAPI CSocketComm::SocketThreadProc(LPVOID pParam)
 {
-    CSocketComm* pThis = reinterpret_cast<CSocketComm*>( pParam );
-    _ASSERTE( pThis != NULL );
+    CSocketComm* pThis = reinterpret_cast<CSocketComm*>(pParam);
+    _ASSERTE(pThis != NULL);
 
     pThis->Run();
 

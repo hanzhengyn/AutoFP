@@ -13,38 +13,38 @@
 class CIniFile
 {
 public:
-	CIniFile(LPCTSTR lpIniFileName, INT iMaxStringLength);
-	CIniFile();
-	virtual ~CIniFile();
+    CIniFile(LPCTSTR lpIniFileName, INT iMaxStringLength);
+    CIniFile();
+    virtual ~CIniFile();
 
-// Attributes
+    // Attributes
 protected:
-	CString		m_strFileName;	// path to the INI file
-	int     	m_MAXSTRLEN;	// max length of a string (excluding the key name) that can be wtritten/read to/from the INI file by this instance
+    CString		m_strFileName;	// path to the INI file
+    int     	m_MAXSTRLEN;	// max length of a string (excluding the key name) that can be wtritten/read to/from the INI file by this instance
 
 // Implementation	
 public:
-	CString	GetIniFileName();
-	void	SetIniFileName(LPCTSTR lpIniFileName);
-	BOOL	GetStatus(CFileStatus& rStatus);
+    CString	GetIniFileName();
+    void	SetIniFileName(LPCTSTR lpIniFileName);
+    BOOL	GetStatus(CFileStatus& rStatus);
 
-	BOOL	GetString(LPCTSTR lpSection, LPCTSTR lpKey, CString& strRet, LPCTSTR strDefault);
-	UINT	GetInt(LPCTSTR lpSection, LPCTSTR lpKey, INT iDefaultValue);	
-	FLOAT	GetFloat(LPCTSTR lpSection, LPCTSTR lpKey, FLOAT fDefaultValue);
-	BOOL	GetStruct(LPCTSTR lpSection, LPCTSTR lpKey, LPVOID lpRetStruct, UINT iSizeStruct);
-	void	GetSectionNames(CStringList& lstSectionNames);
+    BOOL	GetString(LPCTSTR lpSection, LPCTSTR lpKey, CString& strRet, LPCTSTR strDefault);
+    UINT	GetInt(LPCTSTR lpSection, LPCTSTR lpKey, INT iDefaultValue);
+    FLOAT	GetFloat(LPCTSTR lpSection, LPCTSTR lpKey, FLOAT fDefaultValue);
+    BOOL	GetStruct(LPCTSTR lpSection, LPCTSTR lpKey, LPVOID lpRetStruct, UINT iSizeStruct);
+    void	GetSectionNames(CStringList& lstSectionNames);
 
-	
-	BOOL	WriteSection(LPCTSTR lpSection, LPCTSTR lpData); 
-	BOOL	WriteString(LPCTSTR lpSection, LPCTSTR lpKey, LPCTSTR lpString);
-	BOOL	WriteIntNumber(LPCTSTR lpSection, LPCTSTR lpKey, INT iValue);
-	BOOL	WriteFloatNumber(LPCTSTR lpSection, LPCTSTR lpKey, double fValue);
-	BOOL	WriteStruct(LPCTSTR lpSection, LPCTSTR lpKey, LPVOID lpStruct, UINT iSizeStruct);
 
-	BOOL	RemoveKey(LPCTSTR lpSection, LPCTSTR lpKey);
+    BOOL	WriteSection(LPCTSTR lpSection, LPCTSTR lpData);
+    BOOL	WriteString(LPCTSTR lpSection, LPCTSTR lpKey, LPCTSTR lpString);
+    BOOL	WriteIntNumber(LPCTSTR lpSection, LPCTSTR lpKey, INT iValue);
+    BOOL	WriteFloatNumber(LPCTSTR lpSection, LPCTSTR lpKey, double fValue);
+    BOOL	WriteStruct(LPCTSTR lpSection, LPCTSTR lpKey, LPVOID lpStruct, UINT iSizeStruct);
+
+    BOOL	RemoveKey(LPCTSTR lpSection, LPCTSTR lpKey);
 
 protected:
-	BOOL	GetString(LPCTSTR lpSection, LPCTSTR lpKey, CString& strRet, LPCTSTR strDefault, DWORD iSize);
+    BOOL	GetString(LPCTSTR lpSection, LPCTSTR lpKey, CString& strRet, LPCTSTR strDefault, DWORD iSize);
 };
 
 /////////////////////////////////////////////////////////////////////////////

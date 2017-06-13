@@ -30,24 +30,24 @@
 struct SockAddrIn : public SOCKADDR_IN {
 public:
     SockAddrIn() { Clear(); }
-    SockAddrIn(const SockAddrIn& sin) { Copy( sin ); }
+    SockAddrIn(const SockAddrIn& sin) { Copy(sin); }
     ~SockAddrIn() { }
     SockAddrIn& Copy(const SockAddrIn& sin);
     void    Clear() { memset(this, 0, sizeof(SOCKADDR_IN)); }
     bool    IsEqual(const SockAddrIn& sin) const;
     bool    IsGreater(const SockAddrIn& sin) const;
     bool    IsLower(const SockAddrIn& pm) const;
-    bool    IsNull() const { return ((sin_addr.s_addr==0L)&&(sin_port==0)); }
+    bool    IsNull() const { return ((sin_addr.s_addr == 0L) && (sin_port == 0)); }
     ULONG   GetIPAddr() const { return sin_addr.s_addr; }
     short   GetPort() const { return sin_port; }
     bool    CreateFrom(LPCTSTR sAddr, LPCTSTR sService, int nFamily = AF_INET);
-    SockAddrIn& operator=(const SockAddrIn& sin) { return Copy( sin ); }
-    bool    operator==(const SockAddrIn& sin) { return IsEqual( sin ); }
-    bool    operator!=(const SockAddrIn& sin) { return !IsEqual( sin ); }
-    bool    operator<(const SockAddrIn& sin)  { return IsLower( sin ); }
-    bool    operator>(const SockAddrIn& sin)  { return IsGreater( sin ); }
-    bool    operator<=(const SockAddrIn& sin) { return !IsGreater( sin ); }
-    bool    operator>=(const SockAddrIn& sin) { return !IsLower( sin ); }
+    SockAddrIn& operator=(const SockAddrIn& sin) { return Copy(sin); }
+    bool    operator==(const SockAddrIn& sin) { return IsEqual(sin); }
+    bool    operator!=(const SockAddrIn& sin) { return !IsEqual(sin); }
+    bool    operator<(const SockAddrIn& sin) { return IsLower(sin); }
+    bool    operator>(const SockAddrIn& sin) { return IsGreater(sin); }
+    bool    operator<=(const SockAddrIn& sin) { return !IsGreater(sin); }
+    bool    operator>=(const SockAddrIn& sin) { return !IsLower(sin); }
     operator LPSOCKADDR() { return (LPSOCKADDR)(this); }
     size_t  Size() const { return sizeof(SOCKADDR_IN); }
     void    SetAddr(SOCKADDR_IN* psin) { memcpy(this, psin, Size()); }
@@ -57,8 +57,8 @@ typedef std::list<SockAddrIn> CSockAddrList;
 
 struct stMessageProxy
 {
-  SockAddrIn address;
-  BYTE byData[BUFFER_SIZE];
+    SockAddrIn address;
+    BYTE byData[BUFFER_SIZE];
 };
 
 class CSocketComm
@@ -92,21 +92,21 @@ public:
     // Create a socket, connect to (Client side)
     bool ConnectTo(LPCTSTR strDestination, LPCTSTR strServiceName, int nProtocol, int nType);
 
-// Event function - override to get data
+    // Event function - override to get data
     virtual void OnDataReceived(const LPBYTE lpBuffer, DWORD dwCount);
     virtual void OnEvent(UINT uEvent, LPVOID lpvData);
-// Run function - override to implement a new behaviour
+    // Run function - override to implement a new behaviour
     virtual void Run();
 
-// Data function
+    // Data function
     DWORD ReadComm(LPBYTE lpBuffer, DWORD dwSize, DWORD dwTimeout);
     DWORD WriteComm(const LPBYTE lpBuffer, DWORD dwCount, DWORD dwTimeout);
 
     // Utility functions
     static SOCKET WaitForConnection(SOCKET sock); // Wait For a new connection (Server side)
     static bool ShutdownConnection(SOCKET sock);  // Shutdown a connection
-    static USHORT GetPortNumber( LPCTSTR strServiceName );  // Get service port number
-    static ULONG GetIPAddress( LPCTSTR strHostName );   // Get IP address of a host
+    static USHORT GetPortNumber(LPCTSTR strServiceName);  // Get service port number
+    static ULONG GetIPAddress(LPCTSTR strHostName);   // Get IP address of a host
     static bool GetLocalName(LPTSTR strName, UINT nSize);   // GetLocalName
     static bool GetLocalAddress(LPTSTR strAddress, UINT nSize); // GetLocalAddress
 // SocketComm - data

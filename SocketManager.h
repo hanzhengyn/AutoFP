@@ -13,24 +13,24 @@
 
 #define WM_UPDATE_CONNECTION	WM_APP+0x1234
 
-class CSocketManager : public CSocketComm  
+class CSocketManager : public CSocketComm
 {
 public:
-	CSocketManager();
-	virtual ~CSocketManager();
+    CSocketManager();
+    virtual ~CSocketManager();
 
-	void SetMessageWindow(CEdit* pMsgCtrl);
-	void SetMainWindow(CWnd* pMain);
-	void AppendMessage(LPCTSTR strText );
+    void SetMessageWindow(CEdit* pMsgCtrl);
+    void SetMainWindow(CWnd* pMain);
+    void AppendMessage(LPCTSTR strText);
 public:
 
-	virtual void OnDataReceived(const LPBYTE lpBuffer, DWORD dwCount);
-	virtual void OnEvent(UINT uEvent, LPVOID lpvData);
+    virtual void OnDataReceived(const LPBYTE lpBuffer, DWORD dwCount);
+    virtual void OnEvent(UINT uEvent, LPVOID lpvData);
 
 protected:
-	void DisplayData(const LPBYTE lpData, DWORD dwCount, const SockAddrIn& sfrom);
-	CEdit* m_pMsgCtrl;
-	CWnd* m_pMain;
+    void DisplayData(const LPBYTE lpData, DWORD dwCount, const SockAddrIn& sfrom);
+    CEdit* m_pMsgCtrl;
+    CWnd* m_pMain;
 };
 
 #endif // !defined(AFX_SOCKETMANAGER_H__7403BD71_338A_4531_BD91_3D7E5B505793__INCLUDED_)

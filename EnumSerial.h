@@ -1,4 +1,4 @@
-/************************************************************************* 
+/*************************************************************************
 * Serial port enumeration routines
 *
 * The EnumSerialPort function will populate an array of SSerInfo structs,
@@ -44,4 +44,4 @@ struct SSerInfo {
 // Routine for enumerating the available serial ports. Throws a CString on
 // failure, describing the error that occurred. If bIgnoreBusyPorts is TRUE,
 // ports that can't be opened for read/write access are not included.
-void EnumSerialPorts(CArray<SSerInfo,SSerInfo&> &asi, BOOL bIgnoreBusyPorts=TRUE);
+void EnumSerialPorts(CArray<SSerInfo, SSerInfo&> &asi, BOOL bIgnoreBusyPorts = TRUE);

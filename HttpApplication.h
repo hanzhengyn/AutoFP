@@ -3,9 +3,9 @@
 class CHttpApplication
 {
 public:
-	CHttpApplication();
-	~CHttpApplication();
+    CHttpApplication();
+    ~CHttpApplication();
 public:
-	void ProcessRequest(CHttpContext context);
+    void ProcessRequest(CHttpContext context);
 };
 
