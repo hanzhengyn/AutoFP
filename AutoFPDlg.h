@@ -119,19 +119,22 @@ public:
     //////////////////Halcon ²ÎÊý/////////////////////////////////
 public:
     HWindow m_Window;
-    HTuple  m_hv_AcqHandle_Up, m_hv_AcqHandle_Down;
+    HTuple  m_hv_AcqHandle_Up, m_hv_AcqHandle_Down, m_hv_AcqHandle_Tape;
     HObject m_ho_Image, m_ho_ROI_Search_Domain, m_ho_ROI_Model_Domain;
     HObject m_ho_ImageMean, m_ho_Region, m_ho_ConnectionRegions, m_ho_RegionUnion, m_ho_RegionDilation;
     HObject m_ho_ImagePart;
     HTuple m_hv_Width, m_hv_Height;
     HObject m_ho_ROI_0, m_ho_ImageReduced;
     HObject m_ho_ModelImages, m_ho_ModelRegions, m_ho_ModelContours, m_ho_ImageReducedSearch;
-    HTuple m_hv_ModelID;
+    HTuple m_hv_ModelID, m_hv_ModelID_Tape;
     HTuple m_hv_Row, m_hv_Column, m_hv_Angle, m_hv_Score;
     HTuple m_hv_CheckRow, m_hv_CheckColumn, m_hv_CheckAngle, m_hv_CheckScore;
 public:
     void OpenFramegrabUp();
     void OpenFramegrabDown();
+    void OpenTapeCamera();
+    BOOL CreateTapeModel();
+    BOOL CheckTapeModel();
     BOOL CheckModel(Position2 &posOffset, LPCTSTR place);
     double m_nOffsetX;
     double m_nOffsetY;
@@ -140,6 +143,7 @@ public:
     CString m_strCameraVersion;
     BOOL m_bCameraOpenUp;
     BOOL m_bCameraOpenDown;
+    BOOL m_bCameraOpenTape;
     BOOL m_bTimerX;
     BOOL m_bTimerY;
     BOOL m_bTimerZ;
@@ -683,6 +687,8 @@ public:
     afx_msg void OnStnDblclickSocketGood91();
     afx_msg void OnStnDblclickSocketGood101();
     afx_msg void OnBnClickedCheckDownlight();
+    afx_msg void OnBnClickedBtnTapecameraCreate();
+    afx_msg void OnBnClickedBtnTapecamearCheck();
 };
 UINT CheckThreadProc(LPVOID lPara);
 UINT CheckProgrammerProc(LPVOID lPara);

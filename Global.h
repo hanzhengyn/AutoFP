@@ -235,5 +235,5 @@ extern BOOL gm_bSaveConfig;
 extern BOOL gm_bConvertChip;
 extern BOOL gm_bDoorAlarm;
 extern BOOL gm_bTapeOutCheck;
-
+extern BOOL gm_bTapeCamera;
 #endif

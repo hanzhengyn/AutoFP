@@ -201,10 +201,8 @@ void  AddGetPreference()
 {
     bool bEmpty[MAXNUM_OF_SOCKET]{ false,false,false,false }, bUsed[MAXNUM_OF_SOCKET]{ false,false,false,false };
     int nStatus[MAXNUM_OF_SOCKET]{ 0,0,0,0 };
-    for (int nModel = 0; nModel < MAXNUM_OF_PROGRAMMER; nModel++)
-    {
-        for (int nSocket = 0; nSocket < MAXNUM_OF_SOCKET; nSocket++)
-        {
+    for (int nModel = 0; nModel < MAXNUM_OF_PROGRAMMER; nModel++){
+        for (int nSocket = 0; nSocket < MAXNUM_OF_SOCKET; nSocket++){
             bEmpty[nSocket] = gm_sBurningStatus[nModel].bEmpty[nSocket];
             nStatus[nSocket] = gm_sBurningStatus[nModel].nAdpStatus[nSocket];
             bUsed[nSocket] = gm_bSocketUsed[nModel*MAXNUM_OF_SOCKET + nSocket];
@@ -213,8 +211,7 @@ void  AddGetPreference()
         if (bUsed[0] && !bEmpty[0] && (FP_OK == nStatus[0] || FP_NG == nStatus[0]) ||
             bUsed[1] && !bEmpty[1] && (FP_OK == nStatus[1] || FP_NG == nStatus[1]) ||
             bUsed[2] && !bEmpty[2] && (FP_OK == nStatus[2] || FP_NG == nStatus[2]) ||
-            bUsed[3] && !bEmpty[3] && (FP_OK == nStatus[3] || FP_NG == nStatus[3]))
-        {
+            bUsed[3] && !bEmpty[3] && (FP_OK == nStatus[3] || FP_NG == nStatus[3])){
             gm_nModelGetPreference[nModel]++;
         }
     }
@@ -1682,6 +1679,10 @@ UINT OutputProc(LPVOID lParam)
                     gm_nCurrentOutSize++;//吸嘴每取一个，出料就增加一个
                     if (nBurningSataus[i] == FP_OK)
                     {
+                        CString strLog;
+                        strLog.Format("%d号模组%d号烧录座，烧录OK。当前烧录OK总数：%d。", nModel + 1, nSocket + 1, gm_nTotalGoodSize + 1);
+                        gm_logFile.Write(strLog);
+
                         gm_sBurningStatus[nModel].nContinueFailSize[nSocket] = 0;
                         gm_nDisplayGoodForSocket[nModel*MAXNUM_OF_SOCKET + nSocket]++;
                         pMainWnd->DisplayGood(nModel*MAXNUM_OF_SOCKET + nSocket, gm_nDisplayGoodForSocket[nModel*MAXNUM_OF_SOCKET + nSocket]);
@@ -1689,7 +1690,7 @@ UINT OutputProc(LPVOID lParam)
                     else
                     {
                         CString strLog;
-                        strLog.Format("%d号模组%d号烧录座，烧录NG。当前烧录NG总数：%d。", nModel, nSocket, gm_nTotalFPFail + 1);
+                        strLog.Format("%d号模组%d号烧录座，烧录NG。当前烧录NG总数：%d。", nModel + 1, nSocket + 1, gm_nTotalFPFail + 1);
                         gm_logFile.Write(strLog);
 
                         gm_sBurningStatus[nModel].nContinueFailSize[nSocket]++;
@@ -1720,7 +1721,7 @@ UINT OutputProc(LPVOID lParam)
 
                     CString str;
                     str.Format("烧录座#%d-%d芯片未取出。", nModel + 1, nSocket + 1);
-
+                    gm_logFile.Write(str);
                     pMainWnd->AppendLogMessage(str);
                     gm_bErrorFig[i] = nResult;
                     BOOL bHasGetChip = bNozzleHasChip[0] || bNozzleHasChip[1] || bNozzleHasChip[2] || bNozzleHasChip[3];
@@ -2494,6 +2495,11 @@ UINT BurningProc(LPVOID lParam)
                 }
             }
         }
+
+        if(gm_bTapeCamera)
+            if(!pMainWnd->CheckTapeModel())
+                ShowErrorMessage("编带出料相机匹配失败，检查编带机是否故障。", pMainWnd);
+                break;
 
 
         if (!gm_bConvertChip)

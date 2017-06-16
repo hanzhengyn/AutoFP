@@ -105,6 +105,8 @@ BOOL gm_bStockRun;
 BOOL gm_bConvertChip = FALSE;
 BOOL gm_bDoorAlarm = FALSE;
 BOOL gm_bTapeOutCheck = TRUE;
+//是否使用出料编带相机
+BOOL gm_bTapeCamera = FALSE;
 
 Point gm_nOutOrigePos;
 Point gm_nTapeOutOffset;

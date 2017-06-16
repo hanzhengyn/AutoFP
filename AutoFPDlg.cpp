@@ -110,6 +110,7 @@ CAutoFPDlg::CAutoFPDlg(CWnd* pParent /*=NULL*/)
     m_bProgrammer = FALSE;
     m_bCameraOpenDown = FALSE;
     m_bCameraOpenUp = FALSE;
+    m_bCameraOpenTape = FALSE;
     m_bSocketConnect = FALSE;
     //m_hv_ModelID = NULL;
     //m_hv_CheckRow = NULL;
@@ -370,7 +371,9 @@ BEGIN_MESSAGE_MAP(CAutoFPDlg, CDialog)
     ON_STN_DBLCLK(IDC_SOCKET_GOOD_91, &CAutoFPDlg::OnStnDblclickSocketGood91)
     ON_STN_DBLCLK(IDC_SOCKET_GOOD_101, &CAutoFPDlg::OnStnDblclickSocketGood101)
     ON_BN_CLICKED(IDC_CHECK_DOWNLIGHT, &CAutoFPDlg::OnBnClickedCheckDownlight)
-END_MESSAGE_MAP()
+        ON_BN_CLICKED(IDC_BTN_TAPECAMERA_CREATE, &CAutoFPDlg::OnBnClickedBtnTapecameraCreate)
+        ON_BN_CLICKED(IDC_BTN_TAPECAMEAR_CHECK, &CAutoFPDlg::OnBnClickedBtnTapecamearCheck)
+        END_MESSAGE_MAP()
 
 
 //初始化http服务器
@@ -2396,6 +2399,9 @@ void CAutoFPDlg::OnBnClickedBtnRun()
     //ScreenToClient(rt);
     //InvalidateRect(&rt, TRUE);
 
+    if (gm_bTapeCamera)
+        CreateTapeModel();
+
     if (!CheckPositiveMeter())
     {
         gm_bBeep = TRUE;
@@ -4049,7 +4055,7 @@ int CAutoFPDlg::CheckOutTape()
         unsigned int lenBuff = 256;
         unsigned long lenMessage;
         CString outPut;
-        m_port.read_scc(mess, lenBuff, lenMessage);
+        //m_port.read_scc(mess, lenBuff, lenMessage);
         //SendCommand("%01#RCSR0025**\r");
         SendCommand("%01#RDD0050000500**\r");
         if (m_port.read_scc(mess, lenBuff, lenMessage) == TRUE)
@@ -4082,6 +4088,7 @@ int CAutoFPDlg::CheckOutTape()
                 }
             }
         }
+        SetDlgItemText(IDC_STATIC_TAPE_STATUS, "Tape Status:"+outPut);
         //if (nResult)
         SendCommand("%01#WDD00500005000000**\r");
     }
@@ -5362,6 +5369,99 @@ void CAutoFPDlg::OpenFramegrabDown()
         MessageBox("OpenFramegrabDown Camera Error.");
     }
 }
+
+void CAutoFPDlg::OpenTapeCamera()
+{
+    try
+    {
+        if (!m_bCameraOpenTape)
+        {
+            OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false",
+                "default", "HD USB Camera", 0, -1, &m_hv_AcqHandle_Tape);
+            m_bCameraOpenTape = TRUE;
+            
+        }
+    }
+    catch (HalconCpp::HException &HDevExpDefaultException)
+    {
+        m_bCameraOpenTape = FALSE;
+        MessageBox("Open Tape Camera Error!");
+    }
+}
+
+BOOL CAutoFPDlg::CreateTapeModel()
+{
+    OpenTapeCamera();
+    if (!m_bCameraOpenTape)
+        return FALSE;
+    try
+    {
+        HObject ho_ROI_Model, ho_ImageReduced;
+        GrabImage(&m_ho_Image, m_hv_AcqHandle_Tape);
+        WaitSeconds(1);
+        GrabImage(&m_ho_Image, m_hv_AcqHandle_Tape);
+        GetImageSize(m_ho_Image, &m_hv_Width, &m_hv_Height);
+        GenRectangle2(&ho_ROI_Model, 
+            m_hv_Height / 2,
+            m_hv_Width / 2, 
+            0, 
+            m_hv_Width / 3, 
+            m_hv_Height / 3);
+        ReduceDomain(m_ho_Image, ho_ROI_Model, &ho_ImageReduced);
+        //CreateShapeModel(ho_ImageReduced,
+        //    "auto",						//NumLevels
+        //    HTuple(-30).TupleRad(),							//AngleStart
+        //    HTuple(60).TupleRad(),		//AngleExtent
+        //    0.0175,						//AngleStep
+        //    "auto",						//Optimization
+        //    "ignore_global_polarity",	//Metric
+        //    "auto",						//Contrast
+        //    "auto",						//MinContrast
+        //    &m_hv_ModelID_Tape);
+        CreateShapeModel(ho_ImageReduced, "auto", -0.39, 0.79, "auto", "auto", "use_polarity",
+            "auto", "auto", &m_hv_ModelID_Tape);
+        FindShapeModel(m_ho_Image, m_hv_ModelID_Tape, -0.39, 0.78, 0.5, 1, 0.5, "least_squares",
+            0, 0.9, &m_hv_Row, &m_hv_Column, &m_hv_Angle, &m_hv_Score);
+        if (0 != (HTuple((((m_hv_Height / 2 - m_hv_Row).TupleAbs()) + ((m_hv_Width / 2 - m_hv_Column).TupleAbs()))<100).TupleAnd(m_hv_Score>0.5)))
+        {
+            WriteShapeModel(m_hv_ModelID_Tape, "c:/S100/Model/TapeOutCameraModel.shm");
+            return TRUE;
+        }
+        return FALSE;
+    }
+    catch (HalconCpp::HException &HDevExpDefaultException)
+    {
+        MessageBox("Create Tape Model Error!");
+        return FALSE;
+    }
+}
+
+BOOL CAutoFPDlg::CheckTapeModel()
+{
+    OpenTapeCamera();
+    if (!m_bCameraOpenTape)
+        return FALSE;
+    try
+    {
+        HObject ho_ImageSearch;
+        HTuple hv_RowSearch, hv_ColumnSearch, hv_AngleSearch, hv_ScoreSearch, hv_ModelID;
+        ReadShapeModel("c:/S100/Model/TapeOutCameraModel.shm", &hv_ModelID);
+        GrabImage(&ho_ImageSearch, m_hv_AcqHandle_Tape);
+        GrabImage(&ho_ImageSearch, m_hv_AcqHandle_Tape);
+        FindShapeModel(ho_ImageSearch, hv_ModelID, -0.39, 0.78, 0.5, 1, 0.5, "least_squares",
+            0, 0.9, &hv_RowSearch, &hv_ColumnSearch, &hv_AngleSearch, &hv_ScoreSearch);
+        if (0 != (HTuple((((hv_RowSearch - m_hv_Row).TupleAbs()) + ((hv_ColumnSearch - m_hv_Column).TupleAbs()))<100).TupleAnd(hv_ScoreSearch>0.5)))
+        {
+            return TRUE;
+        }
+        return FALSE;
+    }
+    catch (HalconCpp::HException &HDevExpDefaultException)
+    {
+        return FALSE;
+    }
+}
+
 BOOL CAutoFPDlg::CheckModel(Position2 &posOffset, LPCTSTR place)
 {
 
@@ -5652,6 +5752,7 @@ void CAutoFPDlg::SaveConfig()
     inf.WriteIntNumber("GlobalParam", "gm_nTotalStock", gm_nTotalStock);
     inf.WriteIntNumber("GlobalParam", "gm_nCurrentStock", gm_nCurrentStock);
     inf.WriteIntNumber("GlobalParam", "gm_nStockGoodSize", gm_nStockGoodSize);
+    inf.WriteIntNumber("GlobalParam", "gm_bTapeCamera", gm_bTapeCamera);
     inf.WriteIntNumber("GlobalParam", "m_nTime", m_nTime);
 
     inf.WriteString("gm_sdInfo", "strCheckSum", gm_sdInfo.strCheckSum);
@@ -5740,6 +5841,7 @@ void CAutoFPDlg::LoadConfig()
     gm_nTotalStock = inf.GetInt("GlobalParam", "gm_nTotalStock", 0);
     gm_nCurrentStock = inf.GetInt("GlobalParam", "gm_nCurrentStock", 0);
     gm_nStockGoodSize = inf.GetInt("GlobalParam", "gm_nStockGoodSize", 0);
+    gm_bTapeCamera = inf.GetInt("GlobalParam", "gm_bTapeCamera", 0);
     m_nTime = inf.GetInt("GlobalParam", "m_nTime", 0);
 
     inf.GetString("gm_sdInfo", "strCheckSum", gm_sdInfo.strCheckSum, "");
@@ -8498,4 +8600,22 @@ void CAutoFPDlg::OnBnClickedCheckDownlight()
         SetDownCameraLightOff();
         SetDlgItemTextA(IDC_CHECK_DOWNLIGHT, "打开下光源");
     }
+}
+
+
+void CAutoFPDlg::OnBnClickedBtnTapecameraCreate()
+{
+    if (!CreateTapeModel())
+        MessageBox("Fail");
+    else
+        MessageBox("ok");
+}
+
+
+void CAutoFPDlg::OnBnClickedBtnTapecamearCheck()
+{
+    if (!CheckTapeModel())
+        MessageBox("Fail");
+    else
+        MessageBox("ok");
 }

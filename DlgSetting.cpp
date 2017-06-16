@@ -79,7 +79,7 @@ BEGIN_MESSAGE_MAP(CDlgSetting, CDialog)
     //ON_BN_CLICKED(IDC_CHECK_CONVERT_CHIP, &CDlgSetting::OnBnClickedCheckConvertChip)
     ON_BN_CLICKED(IDC_CHECK_CONVERT_CHIP, &CDlgSetting::OnBnClickedCheckConvertChip)
     ON_BN_CLICKED(IDC_CHECK_DOOR, &CDlgSetting::OnBnClickedCheckDoor)
-    ON_BN_CLICKED(IDC_CHECK_TAPE, &CDlgSetting::OnBnClickedCheckTape)
+    ON_BN_CLICKED(IDC_CHECK_TAPECAMERA, &CDlgSetting::OnBnClickedCheckTape)
     ON_BN_CLICKED(IDC_CHECK_Tapeout, &CDlgSetting::OnBnClickedCheckTapeout)
 END_MESSAGE_MAP()
 
@@ -503,6 +503,13 @@ BOOL CDlgSetting::OnInitDialog()
     //初始化出料检测选项
     pBtn = (CButton*)GetDlgItem(IDC_CHECK_Tapeout);
     if (gm_bTapeOutCheck)
+        pBtn->SetCheck(1);
+    else
+        pBtn->SetCheck(0);
+
+    //初始化出料相机选项
+    pBtn = (CButton*)GetDlgItem(IDC_CHECK_TAPECAMERA);
+    if (gm_bTapeCamera)
         pBtn->SetCheck(1);
     else
         pBtn->SetCheck(0);
@@ -1067,10 +1074,10 @@ void CDlgSetting::OnBnClickedCheckDoor()
 
 void CDlgSetting::OnBnClickedCheckTape()
 {
-    if (gm_bDoorAlarm == 1)
-        gm_bDoorAlarm = 0;
-    else if (gm_bDoorAlarm == 0)
-        gm_bDoorAlarm = 1;
+    if (gm_bTapeCamera == 1)
+        gm_bTapeCamera = 0;
+    else if (gm_bTapeCamera == 0)
+        gm_bTapeCamera = 1;
 }
 
 

@@ -126,6 +126,7 @@
 #define IDC_SOCKPOS_ZHEIGHT             1030
 #define IDC_POSRADIO_XY12               1030
 #define IDC_MAIN_MODULE10               1030
+#define IDC_STATIC_TAPE_STATUS          1030
 #define IDC_MODULE2_S0OFF2              1031
 #define IDC_SOCKPOS_START               1031
 #define IDC_POSRADIO_XY13               1031
@@ -630,6 +631,7 @@
 #define IDC_MODULE1_STATUS82            1145
 #define IDC_STATUS83                    1145
 #define IDC_CHECK_TAPE                  1145
+#define IDC_CHECK_TAPECAMERA            1145
 #define IDC_MODULE1_STATUS83            1146
 #define IDC_STATUS84                    1146
 #define IDC_CHECK_Tapeout               1146
@@ -878,9 +880,12 @@
 #define IDC_TRAYIN_YPITCHT2             1256
 #define IDC_CHKPOINT_GETOFFSET3         1256
 #define IDC_RADIO_ROTATE_ANGLE180       1256
+#define IDC_BTN_READ_INIFILE2           1256
+#define IDC_BTN_TAPECAMERA_CREATE       1256
 #define IDC_NGBIN_Y                     1257
 #define IDC_CHKPOINT_GETOFFSET4         1257
 #define IDC_RADIO_ROTATE_ANGLEN92       1257
+#define IDC_BTN_TAPECAMEAR_CHECK        1257
 #define IDC_NGBIN_Z                     1258
 #define IDC_RADIO_ROTATE_ANGLE5         1258
 #define IDC_RADIO_ROTATE_ANGLE182       1258
@@ -963,7 +968,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        176
+#define _APS_NEXT_RESOURCE_VALUE        177
 #define _APS_NEXT_COMMAND_VALUE         32785
 #define _APS_NEXT_CONTROL_VALUE         1272
 #define _APS_NEXT_SYMED_VALUE           101

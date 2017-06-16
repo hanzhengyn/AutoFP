@@ -71,12 +71,12 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    CString		m_strTitle;
+    CString     m_strTitle;
 
-    COLORREF	m_clrBorder;
-    COLORREF	m_clrTitleBackground;
-    COLORREF	m_clrClientBackground;
-    COLORREF	m_clrTitleText;
+    COLORREF    m_clrBorder;
+    COLORREF    m_clrTitleBackground;
+    COLORREF    m_clrClientBackground;
+    COLORREF    m_clrTitleText;
 
     XPGroupBoxStyle		m_nType;
     DWORD       m_dwAlignment;

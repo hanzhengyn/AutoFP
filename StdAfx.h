@@ -43,7 +43,7 @@
 //#define BOARD_TYPE GOOGOL
 
 //是否使用飞达
-#define FEEDER 0
+#define FEEDER 1
 
 //相机型号
 #define CAMERA_DAHENG_MER 1
@@ -52,7 +52,7 @@
 //#define SINGLE_AXIS 0	//八轴卡
 
 #define SINGLE_AXIS 1	//四轴卡
-#define FOUR_NUZZLE 1	//四吸嘴 是否使用sd404 IO卡
+//#define FOUR_NUZZLE 1	//四吸嘴 是否使用sd404 IO卡
 
 #if BOARD_TYPE == GOOGOL
 #define XAXIS 1		//x轴
